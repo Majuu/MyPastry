@@ -19,9 +19,7 @@ class IntroScreen extends Component<IntroScreenPropsInterface> {
                 <View style={styles.container}>
                     <CustomText style={styles.header} text={textPlaceholders.introScreen.welcomeToMyPastry} fontFamily={FontsEnum.SEN_BOLD} fontSize={35} color={ColorsEnum.DARK_GREEN}/>
                     <CustomText style={styles.subheader} text={textPlaceholders.introScreen.subtitle} fontFamily={FontsEnum.SEN_REGULAR} fontSize={20} color={ColorsEnum.DARK_GREEN}/>
-                    <View style={styles.cakeImage}>
-                        <Cake width={'100%'} height={'100%'}/>
-                    </View>
+                    <Cake width={240} height={240} style={styles.cakeImage}/>
                     <CustomButton style={styles.button} text={textPlaceholders.introScreen.letsStart} onPress={(): void => navigation.navigate(ScreensEnum.MENU)}/>
                 </View>
             </FullScreenContainer>

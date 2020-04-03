@@ -3,5 +3,11 @@ export const textPlaceholders = {
         welcomeToMyPastry: 'Welcome to MyPastry',
         subtitle: 'A place where you keep your favourite recipes in one place and learn how to bake',
         letsStart: 'Let\'s get started!'
+    },
+    menuScreen: {
+        learn: 'Learn the basics',
+        myList: 'My recipe list',
+        list: 'All recipes',
+        addRecipe: 'Add a recipe'
     }
 };

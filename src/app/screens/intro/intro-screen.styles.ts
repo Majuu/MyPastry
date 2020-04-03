@@ -19,8 +19,6 @@ export const styles = StyleSheet.create({
         marginBottom: 60
     },
     cakeImage: {
-        width: 230,
-        height: 230,
-        marginTop: 35
+        marginTop: 20
     }
 });
