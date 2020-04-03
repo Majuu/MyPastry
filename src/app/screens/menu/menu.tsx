@@ -13,26 +13,27 @@ import {MenuItemListInterface} from './menu.interface';
 import {styles} from './menu.styles';
 
 class MenuScreen extends Component {
+    private imgDimensions = 80;
     private data: MenuItemListInterface[] = [
         {
             id: 'learn',
             title: textPlaceholders.menuScreen.learn,
-            image: <Learn width={80} height={80}/>
+            image: <Learn width={this.imgDimensions} height={this.imgDimensions}/>
         },
         {
             id: 'myList',
             title: textPlaceholders.menuScreen.myList,
-            image: <Chef width={80} height={80}/>
+            image: <Chef width={this.imgDimensions} height={this.imgDimensions}/>
         },
         {
             id: 'list',
             title: textPlaceholders.menuScreen.list,
-            image: <Menu width={80} height={80}/>
+            image: <Menu width={this.imgDimensions} height={this.imgDimensions}/>
         },
         {
             id: 'add',
             title: textPlaceholders.menuScreen.addRecipe,
-            image: <Cooking width={80} height={80}/>
+            image: <Cooking width={this.imgDimensions} height={this.imgDimensions}/>
         }
     ];
 

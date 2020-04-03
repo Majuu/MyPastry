@@ -12,6 +12,7 @@ import {styles} from './intro-screen.styles';
 import FullScreenContainer from '../../components/fullscreen-container/fullscreen-container';
 
 class IntroScreen extends Component<IntroScreenPropsInterface> {
+    private imageDimensions = 240;
     public render(): ReactElement {
         const {navigation} = this.props;
         return (
@@ -19,7 +20,7 @@ class IntroScreen extends Component<IntroScreenPropsInterface> {
                 <View style={styles.container}>
                     <CustomText style={styles.header} text={textPlaceholders.introScreen.welcomeToMyPastry} fontFamily={FontsEnum.SEN_BOLD} fontSize={35} color={ColorsEnum.DARK_GREEN}/>
                     <CustomText style={styles.subheader} text={textPlaceholders.introScreen.subtitle} fontFamily={FontsEnum.SEN_REGULAR} fontSize={20} color={ColorsEnum.DARK_GREEN}/>
-                    <Cake width={240} height={240} style={styles.cakeImage}/>
+                    <Cake width={this.imageDimensions} height={this.imageDimensions} style={styles.cakeImage}/>
                     <CustomButton style={styles.button} text={textPlaceholders.introScreen.letsStart} onPress={(): void => navigation.navigate(ScreensEnum.MENU)}/>
                 </View>
             </FullScreenContainer>
