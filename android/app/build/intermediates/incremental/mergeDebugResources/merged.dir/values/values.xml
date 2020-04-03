@@ -668,7 +668,7 @@
     <string name="abc_shareactionprovider_share_with_application">Share with <ns1:g example="Mail" id="application_name">%s</ns1:g></string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="alert_description" translatable="false">Alert</string>
-    <string name="app_name">MyProject</string>
+    <string name="app_name">My Pastry</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
     <string name="button_description" translatable="false">Button</string>
@@ -3934,10 +3934,10 @@
     <item name="android:layout_marginLeft">0dp</item>
   </style>
     <style name="Widget.MaterialComponents.Button.TextButton.Dialog.Icon">
-    <!-- Icon text custom-button has the same padding as a regular text custom-button -->
+    <!-- Icon text button has the same padding as a regular text button -->
   </style>
     <style name="Widget.MaterialComponents.Button.TextButton.Icon">
-    <!-- Icon text custom-button has the same padding as a regular text custom-button -->
+    <!-- Icon text button has the same padding as a regular text button -->
   </style>
     <style name="Widget.MaterialComponents.Button.TextButton.Snackbar">
     <item name="android:textColor">?attr/colorPrimary</item>
@@ -4431,8 +4431,8 @@
         <!-- Minimum inset for content views within a bar. Navigation buttons and
              menu views are excepted. Only valid for some themes and configurations. -->
         <attr format="dimension" name="contentInsetRight"/>
-        <!-- Minimum inset for content views within a bar when a navigation custom-button
-             is present, such as the Up custom-button. Only valid for some themes and configurations. -->
+        <!-- Minimum inset for content views within a bar when a navigation button
+             is present, such as the Up button. Only valid for some themes and configurations. -->
         <attr format="dimension" name="contentInsetStartWithNavigation"/>
         <!-- Minimum inset for content views within a bar when actions from a menu
              are present. Only valid for some themes and configurations. -->
@@ -4469,7 +4469,7 @@
     <declare-styleable name="ActivityChooserView">
         <!-- The maximal number of items initially shown in the activity list. -->
         <attr format="string" name="initialActivityCount"/>
-        <!-- The drawable to show in the custom-button for expanding the activities overflow popup.
+        <!-- The drawable to show in the button for expanding the activities overflow popup.
              <strong>Note:</strong> Clients would like to set this drawable
              as a clue about the action the chosen activity will perform. For
              example, if share activity is to be chosen the drawable should
@@ -4863,21 +4863,21 @@
         <attr format="reference" name="actionModeBackground"/>
         <!-- Background drawable to use for action mode UI in the lower split bar -->
         <attr format="reference" name="actionModeSplitBackground"/>
-        <!-- Drawable to use for the close action mode custom-button -->
+        <!-- Drawable to use for the close action mode button -->
         <attr format="reference" name="actionModeCloseDrawable"/>
-        <!-- Drawable to use for the Cut action custom-button in Contextual Action Bar -->
+        <!-- Drawable to use for the Cut action button in Contextual Action Bar -->
         <attr format="reference" name="actionModeCutDrawable"/>
-        <!-- Drawable to use for the Copy action custom-button in Contextual Action Bar -->
+        <!-- Drawable to use for the Copy action button in Contextual Action Bar -->
         <attr format="reference" name="actionModeCopyDrawable"/>
-        <!-- Drawable to use for the Paste action custom-button in Contextual Action Bar -->
+        <!-- Drawable to use for the Paste action button in Contextual Action Bar -->
         <attr format="reference" name="actionModePasteDrawable"/>
-        <!-- Drawable to use for the Select all action custom-button in Contextual Action Bar -->
+        <!-- Drawable to use for the Select all action button in Contextual Action Bar -->
         <attr format="reference" name="actionModeSelectAllDrawable"/>
-        <!-- Drawable to use for the Share action custom-button in WebView selection action modes -->
+        <!-- Drawable to use for the Share action button in WebView selection action modes -->
         <attr format="reference" name="actionModeShareDrawable"/>
-        <!-- Drawable to use for the Find action custom-button in WebView selection action modes -->
+        <!-- Drawable to use for the Find action button in WebView selection action modes -->
         <attr format="reference" name="actionModeFindDrawable"/>
-        <!-- Drawable to use for the Web Search action custom-button in WebView selection action modes -->
+        <!-- Drawable to use for the Web Search action button in WebView selection action modes -->
         <attr format="reference" name="actionModeWebSearchDrawable"/>
 
         <!-- PopupWindow style to use for action modes when showing as a window overlay. -->
@@ -4924,12 +4924,12 @@
         <!-- Specifies a drawable to use for the 'home as up' indicator. -->
         <attr format="reference" name="homeAsUpIndicator"/>
 
-        <!-- Default action custom-button style. -->
+        <!-- Default action button style. -->
         <attr format="reference" name="actionButtonStyle"/>
 
-        <!-- Style for custom-button bars -->
+        <!-- Style for button bars -->
         <attr format="reference" name="buttonBarStyle"/>
-        <!-- Style for buttons within custom-button bars -->
+        <!-- Style for buttons within button bars -->
         <attr format="reference" name="buttonBarButtonStyle"/>
         <!-- A style that may be applied to buttons or other selectable items
              that should react to pressed and focus states, but that do not
@@ -5075,13 +5075,13 @@
         <!-- Color of list item text in alert dialogs. -->
         <attr format="reference|color" name="textColorAlertDialogListItem"/>
 
-        <!-- Style for the "positive" buttons within custom-button bars -->
+        <!-- Style for the "positive" buttons within button bars -->
         <attr format="reference" name="buttonBarPositiveButtonStyle"/>
 
-        <!-- Style for the "negative" buttons within custom-button bars -->
+        <!-- Style for the "negative" buttons within button bars -->
         <attr format="reference" name="buttonBarNegativeButtonStyle"/>
 
-        <!-- Style for the "neutral" buttons within custom-button bars -->
+        <!-- Style for the "neutral" buttons within button bars -->
         <attr format="reference" name="buttonBarNeutralButtonStyle"/>
 
         <!-- ===================== -->
@@ -5377,7 +5377,7 @@
     <!-- Size of the chip's close icon. -->
     <attr format="dimension" name="closeIconSize"/>
 
-    <!-- Whether the chip can be checked. If false, the chip will act as a custom-button. -->
+    <!-- Whether the chip can be checked. If false, the chip will act as a button. -->
     <attr name="android:checkable"/>
     <!-- Whether to show the checked icon. -->
     <attr format="boolean" name="checkedIconVisible"/>
@@ -5571,10 +5571,10 @@
         <attr name="android:button"/>
         <!-- Compat attr to load backported drawable types -->
         <attr format="reference" name="buttonCompat"/>
-        <!-- Tint to apply to the custom-button drawable. -->
+        <!-- Tint to apply to the button drawable. -->
         <attr format="color" name="buttonTint"/>
 
-        <!-- Blending mode used to apply the custom-button tint. -->
+        <!-- Blending mode used to apply the button tint. -->
         <attr name="buttonTintMode">
             <!-- The tint is drawn on top of the drawable.
                  [Sa + (1 - Sa)*Da, Rc = Sc + (1 - Sa)*Dc] -->
@@ -5742,9 +5742,9 @@
     <attr name="fabSize">
       <!-- A size which will change based on the window size. -->
       <enum name="auto" value="-1"/>
-      <!-- The normal sized custom-button. -->
+      <!-- The normal sized button. -->
       <enum name="normal" value="0"/>
-      <!-- The mini sized custom-button. -->
+      <!-- The mini sized button. -->
       <enum name="mini" value="1"/>
     </attr>
     <!-- Custom size for the FAB. If this is set, fabSize will be ignored. -->
@@ -6118,7 +6118,7 @@
     <attr format="reference" name="materialAlertDialogBodyTextStyle"/>
   </declare-styleable>
     <declare-styleable name="MaterialButton">
-    <!-- Whether the custom-button can be checked. -->
+    <!-- Whether the button can be checked. -->
     <attr name="android:checkable"/>
     <attr name="android:insetLeft"/>
     <attr name="android:insetRight"/>
@@ -6133,16 +6133,16 @@
     <attr format="reference" name="icon"/>
     <!-- Specifies the width and height to use for the icon drawable. -->
     <attr format="dimension" name="iconSize"/>
-    <!-- Padding between icon and custom-button text. -->
+    <!-- Padding between icon and button text. -->
     <attr format="dimension" name="iconPadding"/>
     <!-- Specifies how the icon should be positioned on the X axis. -->
     <attr name="iconGravity">
-      <!-- Push icon to the start of the custom-button. -->
+      <!-- Push icon to the start of the button. -->
       <flag name="start" value="0x1"/>
       <!-- Push the icon to the start of the text keeping a distance equal to
            {@link R.attr#iconPadding} from the text. -->
       <flag name="textStart" value="0x2"/>
-      <!-- Push icon to the end of the custom-button. -->
+      <!-- Push icon to the end of the button. -->
       <flag name="end" value="0x3"/>
       <!-- Push the icon to the end of the text keeping a distance equal to
            {@link R.attr#iconPadding} from the text. -->
@@ -6159,26 +6159,26 @@
          attributes declared in the shapeAppearance. Attribute declaration is in the Shape package.
     -->
     <attr name="shapeAppearanceOverlay"/>
-    <!-- Specifies the color used to draw the path outline of the custom-button. Attribute type definition
+    <!-- Specifies the color used to draw the path outline of the button. Attribute type definition
          is in resources package. -->
     <attr name="strokeColor"/>
-    <!-- Width of the stroke path of the custom-button. Default is 0. Attribute type definition is in
+    <!-- Width of the stroke path of the button. Default is 0. Attribute type definition is in
          resources package. -->
     <attr name="strokeWidth"/>
     <!--
-        Specifies the radius for the corners of the custom-button. Default is 0, for non-rounded corners.
+        Specifies the radius for the corners of the button. Default is 0, for non-rounded corners.
     -->
     <attr format="dimension" name="cornerRadius"/>
-    <!-- Ripple color for the custom-button. This may be a color state list, if the desired ripple color
+    <!-- Ripple color for the button. This may be a color state list, if the desired ripple color
          should be stateful. Attribute type definition is in resources package. -->
     <attr name="rippleColor"/>
   </declare-styleable>
     <declare-styleable name="MaterialButtonToggleGroup">
-    <!-- Whether only a single custom-button in this group is allowed to be checked at any time. By
+    <!-- Whether only a single button in this group is allowed to be checked at any time. By
          default, this is false and multiple buttons in this group are allowed to be checked at
          once. -->
     <attr name="singleSelection"/>
-    <!-- The id of the child custom-button that should be checked by default within this custom-button group. -->
+    <!-- The id of the child button that should be checked by default within this button group. -->
     <attr format="reference" name="checkedButton"/>
   </declare-styleable>
     <declare-styleable name="MaterialCalendar">
@@ -6568,15 +6568,15 @@
         <attr name="android:imeOptions"/>
         <!-- The input type to set on the query text field. -->
         <attr name="android:inputType"/>
-        <!-- Close custom-button icon -->
+        <!-- Close button icon -->
         <attr format="reference" name="closeIcon"/>
-        <!-- Go custom-button icon -->
+        <!-- Go button icon -->
         <attr format="reference" name="goIcon"/>
         <!-- Search icon -->
         <attr format="reference" name="searchIcon"/>
         <!-- Search icon displayed as a text field hint -->
         <attr format="reference" name="searchHintIcon"/>
-        <!-- Voice custom-button icon -->
+        <!-- Voice button icon -->
         <attr format="reference" name="voiceIcon"/>
         <!-- Commit icon shown in the query suggestion row -->
         <attr format="reference" name="commitIcon"/>
@@ -6720,7 +6720,7 @@
     <declare-styleable name="Snackbar">
     <!-- Style to use for Snackbars in this theme. -->
     <attr format="reference" name="snackbarStyle"/>
-    <!-- Style to use for action custom-button within a Snackbar in this theme. -->
+    <!-- Style to use for action button within a Snackbar in this theme. -->
     <attr format="reference" name="snackbarButtonStyle"/>
   </declare-styleable>
     <declare-styleable name="SnackbarLayout">
@@ -6736,7 +6736,7 @@
     </attr>
     <!-- Alpha level for the color that is overlaid on top of the background color. -->
     <attr format="float" name="backgroundOverlayColorAlpha"/>
-    <!-- Alpha level for the action custom-button text, to allow for adjusting the lightness or darkness of
+    <!-- Alpha level for the action button text, to allow for adjusting the lightness or darkness of
          the theme color used for Snackbar text buttons (e.g., colorPrimary). -->
     <attr format="float" name="actionTextColorAlpha"/>
   </declare-styleable>
@@ -7077,7 +7077,7 @@
       <enum name="none" value="0"/>
       <!-- The view will display a toggle when the EditText has a password. -->
       <enum name="password_toggle" value="1"/>
-      <!-- The view will display a clear text custom-button while the EditText contains input. -->
+      <!-- The view will display a clear text button while the EditText contains input. -->
       <enum name="clear_text" value="2"/>
       <!-- The view will display a toggle that displays/hides a dropdown menu. -->
       <enum name="dropdown_menu" value="3"/>
@@ -7235,21 +7235,21 @@
             <!-- Push object to the bottom of its container, not changing its size. -->
             <flag name="bottom" value="0x50"/>
         </attr>
-        <!-- Icon drawable to use for the collapse custom-button. -->
+        <!-- Icon drawable to use for the collapse button. -->
         <attr format="reference" name="collapseIcon"/>
-        <!-- Text to set as the content description for the collapse custom-button. -->
+        <!-- Text to set as the content description for the collapse button. -->
         <attr format="string" name="collapseContentDescription"/>
         <!-- Reference to a theme that should be used to inflate popups
              shown by widgets in the toolbar. -->
         <attr name="popupTheme"/>
-        <!-- Icon drawable to use for the navigation custom-button located at
+        <!-- Icon drawable to use for the navigation button located at
              the start of the toolbar. -->
         <attr format="reference" name="navigationIcon"/>
-        <!-- Text to set as the content description for the navigation custom-button
+        <!-- Text to set as the content description for the navigation button
              located at the start of the toolbar. -->
         <attr format="string" name="navigationContentDescription"/>
         <!-- Drawable to set as the logo that appears at the starting side of
-             the Toolbar, just after the navigation custom-button. -->
+             the Toolbar, just after the navigation button. -->
         <attr name="logo"/>
         <!-- A content description string to describe the appearance of the
              associated logo image. -->

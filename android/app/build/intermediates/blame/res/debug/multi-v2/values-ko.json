@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/artur/Projects/react-native/MyProject/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ko/values-ko.xml",
+            "outputFile": "/home/artur/Projects/react-native/PastryApp/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ko/values-ko.xml",
             "map": [
                 {
                     "source": "/home/artur/.gradle/caches/transforms-2/files-2.1/4f509a65121478d6153615d7ef5b7c5f/core-1.1.0/res/values-ko/values-ko.xml",

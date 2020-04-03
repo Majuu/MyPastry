@@ -1,11 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {colors} from '../../../styles/colors';
+import {ColorsEnum} from '../../enums/colors.enum';
 
 export const styles = StyleSheet.create({
     container: {
         width: 'auto',
         height: 50,
-        backgroundColor: colors.brown,
+        backgroundColor: ColorsEnum.GREEN,
         borderRadius: 5,
         display: 'flex',
         alignItems: 'center',
