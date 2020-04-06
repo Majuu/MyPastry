@@ -1,10 +1,8 @@
-import React, {ReactElement} from 'react';
+import React, {PropsWithChildren, ReactElement} from 'react';
 import {View} from 'react-native';
 import {styles} from './fullscreen-container.styles';
 
-// ToDo correct types
-
-const FullScreenContainer = (props: any): ReactElement =>
+const FullScreenContainer = (props: PropsWithChildren<ReactElement>): ReactElement =>
     <View style={styles.container}>
         {props.children}
     </View>;
