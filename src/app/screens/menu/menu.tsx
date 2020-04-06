@@ -8,38 +8,44 @@ import Menu from '../../../../assets/images/menu.svg';
 import Chef from '../../../../assets/images/chef.svg';
 import Cooking from '../../../../assets/images/cooking.svg';
 import {FontsEnum} from '../../enums/fonts.enum';
+import {ScreensEnum} from '../../enums/screens.enum';
 import {ColorsEnum} from '../../enums/colors.enum';
-import {MenuItemListInterface} from './menu.interface';
+import {MenuItemListInterface, MenuPropsInterface} from './menu.interface';
 import {styles} from './menu.styles';
 
-class MenuScreen extends Component {
+class MenuScreen extends Component<MenuPropsInterface> {
     private imgDimensions = 80;
     private data: MenuItemListInterface[] = [
         {
             id: 'learn',
             title: textPlaceholders.menuScreen.learn,
-            image: <Learn width={this.imgDimensions} height={this.imgDimensions}/>
-        },
+            image: <Learn width={this.imgDimensions} height={this.imgDimensions}/>,
+            screenToNavigate: ScreensEnum.RECIPE_LIST
+},
         {
             id: 'myList',
             title: textPlaceholders.menuScreen.myList,
-            image: <Chef width={this.imgDimensions} height={this.imgDimensions}/>
-        },
+            image: <Chef width={this.imgDimensions} height={this.imgDimensions}/>,
+            screenToNavigate: ScreensEnum.RECIPE_LIST
+},
         {
             id: 'list',
             title: textPlaceholders.menuScreen.list,
-            image: <Menu width={this.imgDimensions} height={this.imgDimensions}/>
+            image: <Menu width={this.imgDimensions} height={this.imgDimensions}/>,
+            screenToNavigate: ScreensEnum.RECIPE_LIST
         },
         {
             id: 'add',
             title: textPlaceholders.menuScreen.addRecipe,
-            image: <Cooking width={this.imgDimensions} height={this.imgDimensions}/>
+            image: <Cooking width={this.imgDimensions} height={this.imgDimensions}/>,
+            screenToNavigate: ScreensEnum.RECIPE_LIST
         }
     ];
 
-    private static item(title: string, image: HTMLElement): ReactElement {
+    private item(title: string, image: HTMLElement, screenToNavigate: ScreensEnum): ReactElement {
+        const {navigation} = this.props;
         return (
-            <TouchableOpacity style={styles.listItem}>
+            <TouchableOpacity style={styles.listItem} onPress={(): void => navigation.navigate(screenToNavigate)}>
                 <CustomText text={title} fontSize={30} fontFamily={FontsEnum.SEN_BOLD} color={ColorsEnum.DARK_GREEN}/>
                 {image}
             </TouchableOpacity>
@@ -53,7 +59,7 @@ class MenuScreen extends Component {
                     <View>
                         <FlatList
                             data={this.data}
-                            renderItem={({item}): ReactElement => MenuScreen.item(item.title, item.image)}
+                            renderItem={({item}): ReactElement => this.item(item.title, item.image, item.screenToNavigate)}
                             keyExtractor={(item: MenuItemListInterface): string => item.id}/>
 
                     </View>
