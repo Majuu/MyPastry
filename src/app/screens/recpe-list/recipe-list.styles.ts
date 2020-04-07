@@ -3,12 +3,10 @@ import {ColorsEnum} from '../../enums/colors.enum';
 
 export const styles = StyleSheet.create({
     container: {
-        display: 'flex',
-        flexDirection: 'column'
+        flex: 1
     },
     navbar: {
-        height: 100,
-        width: 'auto',
+        flex: 0.25,
         backgroundColor: ColorsEnum.LIGHT_GREEN,
         borderBottomColor: ColorsEnum.DARK_GREEN,
         borderBottomWidth: 2
@@ -17,6 +15,6 @@ export const styles = StyleSheet.create({
         backgroundColor: ColorsEnum.MARBLE,
         display: 'flex',
         flexDirection: 'column',
-        height: '100%'
+        flex: 30
     }
 });

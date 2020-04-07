@@ -3,7 +3,7 @@ import {FlatList, TouchableOpacity, View} from 'react-native';
 import FullScreenContainer from '../../components/fullscreen-container/fullscreen-container';
 import CustomText from '../../components/custom-text/custom-text';
 import {textPlaceholders} from '../../consts/text-placeholders.const';
-import Learn from '../../../../assets/images/cream-pusher.svg';
+import Learn from '../../../../assets/images/mold.svg';
 import Menu from '../../../../assets/images/menu.svg';
 import Chef from '../../../../assets/images/chef.svg';
 import Cooking from '../../../../assets/images/cooking.svg';
