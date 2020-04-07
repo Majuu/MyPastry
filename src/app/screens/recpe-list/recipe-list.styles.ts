@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     itemList: {
         backgroundColor: ColorsEnum.MARBLE,
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        height: '100%'
     }
 });
