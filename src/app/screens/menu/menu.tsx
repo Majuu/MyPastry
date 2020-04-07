@@ -1,17 +1,15 @@
 import React, {Component, ReactElement, ReactFragment} from 'react';
-import {FlatList, TouchableOpacity, View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import FullScreenContainer from '../../components/fullscreen-container/fullscreen-container';
-import CustomText from '../../components/custom-text/custom-text';
 import {textPlaceholders} from '../../consts/text-placeholders.const';
 import Learn from '../../../../assets/images/mold.svg';
 import Menu from '../../../../assets/images/menu.svg';
 import Chef from '../../../../assets/images/chef.svg';
 import Cooking from '../../../../assets/images/cooking.svg';
-import {FontsEnum} from '../../enums/fonts.enum';
 import {ScreensEnum} from '../../enums/screens.enum';
-import {ColorsEnum} from '../../enums/colors.enum';
 import {MenuItemListInterface, MenuPropsInterface} from './menu.interface';
 import {styles} from './menu.styles';
+import MenuItem from './menu-item/menu-item';
 
 class MenuScreen extends Component<MenuPropsInterface> {
     // ToDo move item to separate component
@@ -22,13 +20,13 @@ class MenuScreen extends Component<MenuPropsInterface> {
             title: textPlaceholders.menuScreen.learn,
             image: <Learn width={this.imgDimensions} height={this.imgDimensions}/>,
             screenToNavigate: ScreensEnum.RECIPE_LIST
-},
+        },
         {
             id: 'myList',
             title: textPlaceholders.menuScreen.myList,
             image: <Chef width={this.imgDimensions} height={this.imgDimensions}/>,
             screenToNavigate: ScreensEnum.RECIPE_LIST
-},
+        },
         {
             id: 'list',
             title: textPlaceholders.menuScreen.list,
@@ -43,16 +41,6 @@ class MenuScreen extends Component<MenuPropsInterface> {
         }
     ];
 
-    private item(title: string, image: HTMLElement, screenToNavigate: ScreensEnum): ReactElement {
-        const {navigation} = this.props;
-        return (
-            <TouchableOpacity style={styles.listItem} onPress={(): void => navigation.navigate(screenToNavigate)}>
-                <CustomText text={title} fontSize={30} fontFamily={FontsEnum.SEN_BOLD} color={ColorsEnum.DARK_GREEN}/>
-                {image}
-            </TouchableOpacity>
-        );
-    }
-
     public render(): ReactFragment {
         return (
             <FullScreenContainer>
@@ -60,9 +48,10 @@ class MenuScreen extends Component<MenuPropsInterface> {
                     <View>
                         <FlatList
                             data={this.data}
-                            renderItem={({item}): ReactElement => this.item(item.title, item.image, item.screenToNavigate)}
+                            renderItem={({item}): ReactElement =>
+                                <MenuItem screenToNavigate={item.screenToNavigate} title={item.title} image={item.image} navigation={this.props.navigation}/>
+                            }
                             keyExtractor={(item: MenuItemListInterface): string => item.id}/>
-
                     </View>
                 </View>
             </FullScreenContainer>
