@@ -6,15 +6,14 @@ export const styles = StyleSheet.create({
         flex: 1
     },
     navbar: {
-        flex: 0.25,
-        backgroundColor: ColorsEnum.LIGHT_GREEN,
-        borderBottomColor: ColorsEnum.DARK_GREEN,
-        borderBottomWidth: 2
+        flex: 0.22,
+        backgroundColor: ColorsEnum.LIGHT_GREEN
     },
     itemList: {
         backgroundColor: ColorsEnum.MARBLE,
         display: 'flex',
         flexDirection: 'column',
-        flex: 30
+        flex: 30,
+        paddingTop: 2
     }
 });

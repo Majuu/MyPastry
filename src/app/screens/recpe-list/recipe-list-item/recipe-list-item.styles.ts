@@ -3,7 +3,7 @@ import {ColorsEnum} from '../../../enums/colors.enum';
 
 export const styles = StyleSheet.create({
     container: {
-        marginBottom: 4,
+        marginBottom: 2,
         padding: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',

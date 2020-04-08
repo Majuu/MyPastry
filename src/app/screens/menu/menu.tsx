@@ -12,7 +12,6 @@ import {styles} from './menu.styles';
 import MenuItem from './menu-item/menu-item';
 
 class MenuScreen extends Component<MenuPropsInterface> {
-    // ToDo move item to separate component
     private imgDimensions = 80;
     private data: MenuItemListInterface[] = [
         {

@@ -1,5 +1,6 @@
 import React, {Component, ReactFragment} from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, View} from 'react-native';
+import RecipeListNavbar from './recipe-list-navbar/recipe-list-navbar';
 import RecipeListItem from './recipe-list-item/recipe-list-item';
 import {styles} from './recipe-list.styles';
 
@@ -9,8 +10,9 @@ class RecipeListScreen extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.navbar}>
-                    <Text>Recipe List Screen Works!</Text>
+                    <RecipeListNavbar/>
                 </View>
+                {/*Flatlist here*/}
                 <ScrollView style={styles.itemList}>
                     <RecipeListItem/>
                     <RecipeListItem/>
