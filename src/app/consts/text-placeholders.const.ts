@@ -9,5 +9,9 @@ export const textPlaceholders = {
         myList: 'My recipe list',
         list: 'All recipes',
         addRecipe: 'Add a recipe'
+    },
+    allRecipes: {
+        title: 'All recipes in one place',
+        goToMyRecipes: 'My own recipes'
     }
 };

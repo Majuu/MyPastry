@@ -7,7 +7,9 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'column',
         flex: 1,
-        backgroundColor: ColorsEnum.DARK_GREEN
+        backgroundColor: ColorsEnum.DARK_GREEN,
+        borderBottomColor: ColorsEnum.MARBLE,
+        borderBottomWidth: 2
     },
     picker: {
         width: '50%'
@@ -19,7 +21,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         flex: 1,
-        padding: 10
+        padding: 8,
+        marginTop: 3
     },
     header: {
         marginTop: 15

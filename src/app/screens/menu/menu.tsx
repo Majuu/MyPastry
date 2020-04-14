@@ -18,13 +18,13 @@ class MenuScreen extends Component<MenuPropsInterface> {
             id: 'learn',
             title: textPlaceholders.menuScreen.learn,
             image: <Learn width={this.imgDimensions} height={this.imgDimensions}/>,
-            screenToNavigate: ScreensEnum.RECIPE_LIST
+            screenToNavigate: ScreensEnum.LEARN_BASICS
         },
         {
             id: 'myList',
             title: textPlaceholders.menuScreen.myList,
             image: <Chef width={this.imgDimensions} height={this.imgDimensions}/>,
-            screenToNavigate: ScreensEnum.RECIPE_LIST
+            screenToNavigate: ScreensEnum.MY_RECIPES
         },
         {
             id: 'list',

@@ -3,14 +3,17 @@ import {ScrollView, View} from 'react-native';
 import RecipeListNavbar from './recipe-list-navbar/recipe-list-navbar';
 import RecipeListItem from './recipe-list-item/recipe-list-item';
 import {styles} from './recipe-list.styles';
+import CustomModal from "../../components/custom-modal/custom-modal";
 
 // ToDo interfaces
 class RecipeListScreen extends Component {
     public render(): ReactFragment {
+        const {navigation} = this.props;
         return (
             <View style={styles.container}>
+                <CustomModal/>
                 <View style={styles.navbar}>
-                    <RecipeListNavbar/>
+                    <RecipeListNavbar navigation={navigation}/>
                 </View>
                 {/*Flatlist here*/}
                 <ScrollView style={styles.itemList}>
