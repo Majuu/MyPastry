@@ -1,5 +1,6 @@
 import React, {ReactElement} from 'react';
 import {Button, Modal, Text, View} from 'react-native';
+import {styles} from './custom-modal.styles';
 
 class CustomModal extends Modal {
     public state = {
@@ -12,8 +13,8 @@ class CustomModal extends Modal {
                 animationType={'fade'}
                 visible={this.state.isModalVisible}
                 transparent={true}>
-                <View style={{position: 'absolute', top: 0, right: 0, left: 0, bottom: 0, backgroundColor: 'salmon'}}>
-                    <Text>Dupaaaaaaa</Text>
+                <View style={styles.container}>
+                    <Text>Custom Modal works</Text>
                     <Button title={'Modal Off'} onPress={() => this.setState({isModalVisible: false})}/>
                 </View>
             </Modal>

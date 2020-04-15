@@ -5,6 +5,13 @@ import {styles} from './custom-picker.styles';
 
 // ToDo add props - generic item
 class CustomPicker extends PureComponent {
+    private pickerItems = [
+        {label: 'All', value: 'all'},
+        {label: 'Cookies', value: 'cookies'},
+        {label: 'Muffins', value: 'muffins'},
+        {label: 'Cakes', value: 'cakes'}
+    ]
+
     public state = {
         chosenCategory: 'all'
     };
@@ -17,10 +24,9 @@ class CustomPicker extends PureComponent {
                     onValueChange={(itemValue: number| string): void => this.setState({chosenCategory: itemValue})}
                     style={styles.picker}
                     mode={'dialog'}>
-                    <Picker.Item label={'All'} value={'all'} />
-                    <Picker.Item label={'Cakes'} value={'cakes'} />
-                    <Picker.Item label={'Muffins'} value={'muffins'} />
-                    <Picker.Item label={'Cookies'} value={'cookies'} />
+                    {this.pickerItems.map(item =>
+                        <Picker.Item key={item.value} label={item.label} value={item.value} />
+                    )}
                 </Picker>
             </View>
         );
