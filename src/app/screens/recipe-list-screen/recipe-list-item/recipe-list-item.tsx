@@ -20,7 +20,7 @@ class RecipeListItem extends PureComponent {
 
     public render(): ReactElement {
         return (
-            <TouchableOpacity style={styles.container} activeOpacity={0.7}>
+            <TouchableOpacity style={styles.container} activeOpacity={0.7} onPress={this.props.onPress}>
                 <View style={styles.leftMenuWrapper}>
                     <Image source={require('../../../../../assets/images/muffin.jpg')} style={styles.icon}/>
                     <View style={styles.descriptionWrapper}>
