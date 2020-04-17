@@ -1,8 +1,8 @@
-import {DispatchProp} from 'react-redux';
+import {Dispatch} from 'redux';
 
 export interface RecipeListPropsInterface {
-    modal?: boolean;
-    dispatch?: DispatchProp;
+    modal: boolean;
+    dispatch: Dispatch;
     navigation: any;
 }
 

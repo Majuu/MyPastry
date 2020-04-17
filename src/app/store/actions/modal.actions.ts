@@ -1,12 +1,9 @@
-export const SHOW_RECIPE_MODAL = 'SHOW_RECIPE_MODAL';
-export const HIDE_RECIPE_MODAL = 'HIDE_RECIPE_MODAL';
+export interface ModalActionsInterface {
+    SHOW_RECIPE_MODAL: string;
+    HIDE_RECIPE_MODAL: string;
+}
 
-// export const showRecipeModal = (isModalVisible: boolean) => ({
-//     type: SHOW_RECIPE_MODAL,
-//     isModalVisible
-// });
-//
-// export const hideRecipeModal = (isModalVisible: boolean) => ({
-//     type: HIDE_RECIPE_MODAL,
-//     isModalVisible
-// });
+export const modalActions: ModalActionsInterface = {
+    SHOW_RECIPE_MODAL: 'SHOW_RECIPE_MODAL',
+    HIDE_RECIPE_MODAL: 'HIDE_RECIPE_MODAL'
+};

@@ -3,13 +3,14 @@ import {Image, TouchableOpacity, View} from 'react-native';
 import CustomText from '../../../components/custom-text/custom-text';
 import {ColorsEnum} from '../../../enums/colors.enum';
 import {FontsEnum} from '../../../enums/fonts.enum';
+import {RecipeListItemPropsInterface} from './recipe-list-item.interface';
 import Timer from '../../../../../assets/images/app-interaction-icons/clock.svg';
 import InactiveStar from '../../../../../assets/images/app-interaction-icons/star-empty.svg';
 import ActiveStar from '../../../../../assets/images/app-interaction-icons/star-active.svg';
 import {styles} from './recipe-list-item.styles';
 
 // ToDo Interfaces
-class RecipeListItem extends PureComponent {
+class RecipeListItem extends PureComponent<RecipeListItemPropsInterface> {
     private titleFontSize: number = 23;
     private subtitleFontSize: number = 17;
     private timeSize: number = 15;
@@ -19,6 +20,7 @@ class RecipeListItem extends PureComponent {
     };
 
     public render(): ReactElement {
+        console.log('recipe-list-item: ', this.props);
         return (
             <TouchableOpacity style={styles.container} activeOpacity={0.7} onPress={this.props.onPress}>
                 <View style={styles.leftMenuWrapper}>

@@ -7,9 +7,10 @@ import {textPlaceholders} from '../../../consts/text-placeholders.const';
 import {ColorsEnum} from '../../../enums/colors.enum';
 import {FontsEnum} from '../../../enums/fonts.enum';
 import {ScreensEnum} from '../../../enums/screens.enum';
+import {RecipeListNavbarPropsInterface} from './recipe-list-navbar.interface';
 import {styles} from './recipe-list-navbar.styles';
 
-class RecipeListNavbar extends Component {
+class RecipeListNavbar extends Component<RecipeListNavbarPropsInterface> {
     public render(): ReactElement {
         const {navigation} = this.props;
         return (
