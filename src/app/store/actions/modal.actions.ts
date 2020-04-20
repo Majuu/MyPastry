@@ -1,4 +1,4 @@
-export interface ModalActionsInterface {
+interface ModalActionsInterface {
     SHOW_RECIPE_MODAL: string;
     HIDE_RECIPE_MODAL: string;
 }
