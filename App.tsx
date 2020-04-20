@@ -2,6 +2,8 @@ import React, {Component, ReactElement, ReactNode} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import 'react-native-gesture-handler';
+import {Provider} from 'react-redux';
+import {store} from './src/app/store/store';
 import MenuScreen from './src/app/screens/menu-screen/menu';
 import IntroScreen from './src/app/screens/intro-screen/intro-screen';
 import RecipeListScreen from './src/app/screens/recipe-list-screen/recipe-list';
@@ -22,13 +24,15 @@ class App extends Component {
 
     public render(): ReactNode {
         return (
-            <NavigationContainer>
-                <Stack.Navigator screenOptions={{headerShown: false}}>
-                    {this.stackScreens.map((item): ReactElement =>
-                        <Stack.Screen key={item.name} name={item.name} component={item.component} />
-                    )}
-                </Stack.Navigator>
-            </NavigationContainer>
+            <Provider store={store}>
+                <NavigationContainer>
+                    <Stack.Navigator screenOptions={{headerShown: false}}>
+                        {this.stackScreens.map((item): ReactElement =>
+                            <Stack.Screen key={item.name} name={item.name} component={item.component} />
+                        )}
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </Provider>
         );
     }
 }
