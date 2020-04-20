@@ -14,6 +14,7 @@ class RecipeListScreen extends React.Component<RecipeListPropsInterface> {
     })
 
     public render(): ReactFragment {
+        console.log('recipe reducer: ', this.props.recipe)
         const {navigation} = this.props;
         return (
             <View style={styles.container}>
@@ -38,5 +39,6 @@ class RecipeListScreen extends React.Component<RecipeListPropsInterface> {
 }
 
 export default connect((state: RecipeListReduxStateInterface) => ({
-    modal: state.modal.isModalVisible
+    modal: state.modal.isModalVisible,
+    recipe: state.recipe
 }))(RecipeListScreen);
