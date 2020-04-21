@@ -1,4 +1,6 @@
-export const allRecipeList = [
+import {RecipeListItemInterface} from '../interfaces/recipe-item.interface';
+
+export const allRecipeList: RecipeListItemInterface[] = [
     {
         title: 'Chocolate Muffin',
         category: 'muffins',
@@ -70,5 +72,5 @@ export const allRecipeList = [
             eggs: 3,
             milk: 300
         }
-    },
+    }
 ];

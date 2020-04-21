@@ -1,4 +1,8 @@
+import {RecipeListItemInterface} from '../../../interfaces/recipe-item.interface';
+
 export interface RecipeListItemPropsInterface {
-    onPress?: () => {};
-    item: any;
+    onPress: () => {};
+    item: {
+        item: RecipeListItemInterface;
+    };
 }

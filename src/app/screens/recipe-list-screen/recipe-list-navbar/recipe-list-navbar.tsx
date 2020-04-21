@@ -20,7 +20,7 @@ class RecipeListNavbar extends Component<RecipeListNavbarPropsInterface> {
                     <View style={styles.picker}>
                         <CustomPicker/>
                     </View>
-                    <CustomButton text={textPlaceholders.allRecipes.goToMyRecipes} onPress={(): void => navigation.navigate(ScreensEnum.INTRO)} />
+                    <CustomButton text={textPlaceholders.allRecipes.goToMyRecipes} onPress={(): void => navigation.navigate(ScreensEnum.MY_RECIPES)} />
                 </View>
             </View>
         );

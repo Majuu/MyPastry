@@ -1,7 +1,6 @@
 import {recipeActions} from '../actions/recipe.actions';
 import {allRecipeList} from '../../consts/all-recipes-list.const';
 
-// ToDo continue injecting list
 const initialState = {
     allRecipes: allRecipeList
 };
