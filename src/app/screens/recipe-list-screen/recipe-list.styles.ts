@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     },
     navbar: {
         flex: 0.22,
-        backgroundColor: ColorsEnum.LIGHT_GREEN
+        backgroundColor: ColorsEnum.GREEN
     },
     itemList: {
         backgroundColor: ColorsEnum.MARBLE,

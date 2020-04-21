@@ -7,9 +7,11 @@ export const styles = StyleSheet.create({
         padding: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        backgroundColor: ColorsEnum.DARK_GREEN,
+        backgroundColor: ColorsEnum.LIGHT_GREEN,
         alignItems: 'center',
-        borderRadius: 5
+        borderRadius: 10,
+        borderColor: ColorsEnum.GREEN,
+        borderWidth: 2
     },
     leftMenuWrapper: {
         flexDirection: 'row'

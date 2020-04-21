@@ -29,18 +29,18 @@ class RecipeListItem extends PureComponent<RecipeListItemPropsInterface> {
                     <Image source={require('../../../../../assets/images/muffin.jpg')} style={styles.icon}/>
                     <View style={styles.descriptionWrapper}>
                         <CustomText
-                            color={ColorsEnum.MARBLE}
+                            color={ColorsEnum.DARK_GREEN}
                             fontSize={this.titleFontSize}
                             fontFamily={FontsEnum.SEN_BOLD}
                             text={title}/>
                         <CustomText
-                            color={ColorsEnum.MARBLE}
+                            color={ColorsEnum.DARK_GREEN}
                             fontSize={this.subtitleFontSize}
                             fontFamily={FontsEnum.SEN_REGULAR}
                             text={category}/>
                         <View style={styles.timeWrapper}>
                             <Timer height={this.timeSize} width={this.timeSize} style={styles.clock}/>
-                            <CustomText text={time} fontSize={this.timeSize} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.MARBLE}/>
+                            <CustomText text={time} fontSize={this.timeSize} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.DARK_GREEN}/>
                         </View>
                     </View>
                 </View>

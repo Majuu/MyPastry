@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {modalActions} from '../../store/actions/modal.actions';
 import RecipeListNavbar from './recipe-list-navbar/recipe-list-navbar';
 import RecipeListItem from './recipe-list-item/recipe-list-item';
-import CustomModal from '../../components/custom-modal/custom-modal';
 import {RecipeListPropsInterface, RecipeListReduxStateInterface} from './recipe-list.interface';
 import {styles} from './recipe-list.styles';
 
