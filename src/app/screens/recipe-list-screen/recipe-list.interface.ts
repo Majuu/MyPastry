@@ -5,7 +5,7 @@ export interface RecipeListPropsInterface {
     dispatch: Dispatch;
     navigation: any;
     //later
-    recipe: any;
+    recipeList: any;
 }
 
 export interface RecipeListReduxStateInterface {

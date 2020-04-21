@@ -1,5 +1,5 @@
-import React, {ReactFragment} from 'react';
-import {ScrollView, View} from 'react-native';
+import React, {ReactElement, ReactFragment} from 'react';
+import {FlatList, ScrollView, View} from 'react-native';
 import {connect} from 'react-redux';
 import {modalActions} from '../../store/actions/modal.actions';
 import RecipeListNavbar from './recipe-list-navbar/recipe-list-navbar';
@@ -14,7 +14,6 @@ class RecipeListScreen extends React.Component<RecipeListPropsInterface> {
     })
 
     public render(): ReactFragment {
-        console.log('recipe reducer: ', this.props.recipe)
         const {navigation} = this.props;
         return (
             <View style={styles.container}>
@@ -22,17 +21,14 @@ class RecipeListScreen extends React.Component<RecipeListPropsInterface> {
                 <View style={styles.navbar}>
                     <RecipeListNavbar navigation={navigation}/>
                 </View>
-                {/*Flatlist here*/}
-                <ScrollView style={styles.itemList}>
-                    <RecipeListItem onPress={this.openModal}/>
-                    <RecipeListItem/>
-                    <RecipeListItem/>
-                    <RecipeListItem/>
-                    <RecipeListItem/>
-                    <RecipeListItem/>
-                    <RecipeListItem/>
-                    <RecipeListItem/>
-                </ScrollView>
+                <FlatList
+                    style={styles.itemList}
+                    data={this.props.recipeList.allRecipes}
+                    renderItem={(item): ReactElement =>
+                        <RecipeListItem item={item} onPress={this.openModal} />
+                    }
+                    keyExtractor={(item): string => item.title}
+                />
             </View>
         );
     }
@@ -40,5 +36,5 @@ class RecipeListScreen extends React.Component<RecipeListPropsInterface> {
 
 export default connect((state: RecipeListReduxStateInterface) => ({
     modal: state.modal.isModalVisible,
-    recipe: state.recipe
+    recipeList: state.recipe
 }))(RecipeListScreen);

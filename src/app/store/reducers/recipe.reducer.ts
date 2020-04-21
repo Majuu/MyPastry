@@ -1,20 +1,10 @@
 import {recipeActions} from '../actions/recipe.actions';
+import {allRecipeList} from '../../consts/all-recipes-list.const';
 
 // ToDo continue injecting list
-const initialState = [
-    {
-        title: 'Muffin',
-        category: 'muffins',
-        time: '00:30:00',
-        isFavourite: false,
-        ingredients: {
-            flour: 500,
-            eggs: 3,
-            milk: 300
-        },
-
-    },
-]
+const initialState = {
+    allRecipes: allRecipeList
+};
 
 const recipeReducer = (state = initialState, action) => {
     switch (action) {

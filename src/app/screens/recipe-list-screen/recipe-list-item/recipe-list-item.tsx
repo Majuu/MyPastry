@@ -20,7 +20,7 @@ class RecipeListItem extends PureComponent<RecipeListItemPropsInterface> {
     };
 
     public render(): ReactElement {
-        console.log('recipe-list-item: ', this.props);
+        console.log(this.props.item)
         return (
             <TouchableOpacity style={styles.container} activeOpacity={0.7} onPress={this.props.onPress}>
                 <View style={styles.leftMenuWrapper}>
