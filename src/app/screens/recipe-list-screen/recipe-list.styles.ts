@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
         backgroundColor: ColorsEnum.GREEN
     },
     itemList: {
-        backgroundColor: ColorsEnum.MARBLE,
+        backgroundColor: ColorsEnum.GREEN,
         display: 'flex',
         flexDirection: 'column',
         flex: 30,
