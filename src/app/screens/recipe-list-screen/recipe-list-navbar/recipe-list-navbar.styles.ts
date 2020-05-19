@@ -7,8 +7,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'column',
         flex: 1,
-        backgroundColor: ColorsEnum.DARK_GREEN,
-        borderBottomColor: ColorsEnum.MARBLE,
+        backgroundColor: ColorsEnum.LIGHT_GREEN,
+        borderBottomColor: ColorsEnum.GREEN,
         borderBottomWidth: 2
     },
     picker: {

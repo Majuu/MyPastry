@@ -15,12 +15,12 @@ class RecipeListNavbar extends Component<RecipeListNavbarPropsInterface> {
         const {navigation} = this.props;
         return (
             <View style={styles.container}>
-                <CustomText style={styles.header} text={textPlaceholders.allRecipes.title} fontSize={32} fontFamily={FontsEnum.SEN_BOLD} color={ColorsEnum.MARBLE}/>
+                <CustomText style={styles.header} text={textPlaceholders.allRecipes.title} fontSize={32} fontFamily={FontsEnum.SEN_BOLD} color={ColorsEnum.DARK_GREEN}/>
                 <View style={styles.contentWrapper}>
                     <View style={styles.picker}>
                         <CustomPicker/>
                     </View>
-                    <CustomButton text={textPlaceholders.allRecipes.goToMyRecipes} onPress={(): void => navigation.navigate(ScreensEnum.INTRO)} />
+                    <CustomButton text={textPlaceholders.allRecipes.goToMyRecipes} onPress={(): void => navigation.navigate(ScreensEnum.MY_RECIPES)} />
                 </View>
             </View>
         );

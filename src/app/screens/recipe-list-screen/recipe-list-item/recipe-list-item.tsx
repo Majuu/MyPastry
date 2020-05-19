@@ -1,5 +1,6 @@
 import React, {PureComponent, ReactElement} from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
+import CustomModal from '../../../components/custom-modal/custom-modal';
 import CustomText from '../../../components/custom-text/custom-text';
 import {ColorsEnum} from '../../../enums/colors.enum';
 import {FontsEnum} from '../../../enums/fonts.enum';
@@ -20,28 +21,30 @@ class RecipeListItem extends PureComponent<RecipeListItemPropsInterface> {
     };
 
     public render(): ReactElement {
-        console.log('recipe-list-item: ', this.props);
+        const {title, category, time, isFavourite} = this.props.item.item;
         return (
             <TouchableOpacity style={styles.container} activeOpacity={0.7} onPress={this.props.onPress}>
+                <CustomModal item={this.props.item.item}/>
                 <View style={styles.leftMenuWrapper}>
                     <Image source={require('../../../../../assets/images/muffin.jpg')} style={styles.icon}/>
                     <View style={styles.descriptionWrapper}>
                         <CustomText
-                            color={ColorsEnum.MARBLE}
+                            color={ColorsEnum.DARK_GREEN}
                             fontSize={this.titleFontSize}
                             fontFamily={FontsEnum.SEN_BOLD}
-                            text={'Title'}/>
+                            text={title}/>
                         <CustomText
-                            color={ColorsEnum.MARBLE}
+                            color={ColorsEnum.DARK_GREEN}
                             fontSize={this.subtitleFontSize}
                             fontFamily={FontsEnum.SEN_REGULAR}
-                            text={'Category'}/>
+                            text={category}/>
                         <View style={styles.timeWrapper}>
                             <Timer height={this.timeSize} width={this.timeSize} style={styles.clock}/>
-                            <CustomText text={'00:15:00'} fontSize={this.timeSize} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.MARBLE}/>
+                            <CustomText text={time} fontSize={this.timeSize} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.DARK_GREEN}/>
                         </View>
                     </View>
                 </View>
+                {/*move item to favourites va isFavourite prop*/}
                 {!this.state.isStarActive && <InactiveStar height={30} width={30} onPress={(): void => {
                     this.setState({isStarActive: !this.state.isStarActive});
                 }} />}
