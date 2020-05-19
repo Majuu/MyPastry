@@ -1,6 +1,7 @@
 import React, {ReactElement} from 'react';
-import {Modal, ScrollView, Text, View} from 'react-native';
+import {Modal, ScrollView, View} from 'react-native';
 import {connect} from 'react-redux';
+import CustomModalRecipeContent from './custom-modal-recipe-content/custom-modal-recipe-content';
 import {modalActions} from '../../store/actions/modal.actions';
 import StepIndicator from 'react-native-step-indicator';
 import CustomText from '../custom-text/custom-text';
@@ -67,21 +68,7 @@ class CustomModal extends Modal {
                                 }}/>
                         </View>
                         <ScrollView style={styles.recipeContent}>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
-                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <CustomModalRecipeContent item={this.props.item}/>
                         </ScrollView>
                     </View>
                 </View>
