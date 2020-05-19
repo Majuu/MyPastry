@@ -1,5 +1,5 @@
 import React, {ReactElement} from 'react';
-import {Button, Modal, Text, View} from 'react-native';
+import {Modal, ScrollView, Text, View} from 'react-native';
 import {connect} from 'react-redux';
 import {modalActions} from '../../store/actions/modal.actions';
 import StepIndicator from 'react-native-step-indicator';
@@ -16,8 +16,12 @@ class CustomModal extends Modal {
         type: modalActions.HIDE_RECIPE_MODAL
     })
 
+    public state = {
+        currentPosition: 1
+    }
+
     public render(): ReactElement {
-        const labels = ['Ingredients','Preparation desk','Baking instructions','Summary'];
+        const labels = ['Checklist','Cook!','To sum up', 'Authors'];
 
         return (
             <Modal
@@ -26,15 +30,59 @@ class CustomModal extends Modal {
                 transparent={true}>
 
                 <View style={styles.container}>
-                    <CloseButton width={20} height={20} style={{position: 'absolute', top: 15, right: 15}} onPress={this.closeModal}/>
+                    <CloseButton width={20} height={20} style={styles.closeButton} onPress={this.closeModal}/>
                     <View style={styles.header}>
                         <CustomText text={'PASTRY ITEM TITLE'} fontSize={40} fontFamily={FontsEnum.SEN_EXTRABOLD} color={ColorsEnum.DARK_GREEN} />
                     </View>
-                    <View style={styles.content}>
-                        <StepIndicator labels={labels} direction={'vertical'}/>
-                        <View>
-                            <Text>Custom Modal works</Text>
+                    <View style={styles.wrapper}>
+                        <View style={styles.stepIndicator}>
+                            <StepIndicator
+                                labels={labels}
+                                direction={'vertical'}
+                                currentPosition={this.state.currentPosition}
+                                stepCount={4}
+                                customStyles={{
+                                    stepIndicatorSize: 40,
+                                    currentStepIndicatorSize: 40,
+                                    separatorStrokeWidth: 4,
+                                    currentStepStrokeWidth: 4,
+                                    stepStrokeCurrentColor: ColorsEnum.GREEN,
+                                    stepStrokeWidth: 4,
+                                    stepStrokeFinishedColor: ColorsEnum.GREEN,
+                                    stepStrokeUnFinishedColor: ColorsEnum.GRAY,
+                                    separatorFinishedColor: ColorsEnum.GREEN,
+                                    separatorUnFinishedColor: ColorsEnum.GRAY,
+                                    stepIndicatorFinishedColor: ColorsEnum.GREEN,
+                                    stepIndicatorUnFinishedColor: ColorsEnum.WHITE,
+                                    stepIndicatorCurrentColor: ColorsEnum.WHITE,
+                                    stepIndicatorLabelFontSize: 22,
+                                    currentStepIndicatorLabelFontSize: 22,
+                                    stepIndicatorLabelCurrentColor: ColorsEnum.GREEN,
+                                    stepIndicatorLabelFinishedColor: ColorsEnum.WHITE,
+                                    stepIndicatorLabelUnFinishedColor: ColorsEnum.GRAY,
+                                    labelColor: '#999999',
+                                    labelSize: 15,
+                                    currentStepLabelColor: ColorsEnum.DARK_GREEN,
+                                    labelAlign: 'flex-start'
+                                }}/>
                         </View>
+                        <ScrollView style={styles.recipeContent}>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                            <Text style={{fontSize: 30}}>Custom Modal works</Text>
+                        </ScrollView>
                     </View>
                 </View>
 

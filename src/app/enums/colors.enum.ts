@@ -3,5 +3,6 @@ export enum ColorsEnum {
     GREEN = '#7dbbb9',
     LIGHT_GREEN = '#c5d7d9',
     MARBLE = '#d8d3d0',
-    WHITE = '#dcdbe1'
+    WHITE = '#dcdbe1',
+    GRAY = '#aaaaaa'
 }

@@ -11,13 +11,30 @@ export const styles = StyleSheet.create({
         backgroundColor: ColorsEnum.LIGHT_GREEN
     },
     header: {
-        marginTop: 40,
-        marginBottom: 20
+        marginTop: 60,
+        marginBottom: 30
 
     },
-    content: {
+    wrapper: {
         display: 'flex',
         flexDirection: 'row',
+        flex: 1
+    },
+    closeButton: {
+        position: 'absolute',
+        top: 20,
+        right: 20
+    },
+    stepIndicator: {
+        width: 'auto',
+        borderRightWidth: 1,
+        borderStyle: 'solid',
+        borderColor: ColorsEnum.DARK_GREEN,
+        marginRight: 6,
+        paddingRight: 3,
+        marginLeft: 6
+    },
+    recipeContent: {
         flex: 1
     }
 });
