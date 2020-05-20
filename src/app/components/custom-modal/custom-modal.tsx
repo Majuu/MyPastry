@@ -13,27 +13,25 @@ import {styles} from './custom-modal.styles';
 
 // ToDo props interface
 class CustomModal extends Modal {
+    public state = {
+        currentPosition: 1
+    }
     private closeModal = () => this.props.dispatch({
         type: modalActions.HIDE_RECIPE_MODAL
     })
 
-    public state = {
-        currentPosition: 1
-    }
-
     public render(): ReactElement {
+        const {item, modal} = this.props;
         const labels = ['Checklist','Cook!','To sum up', 'Authors'];
-
         return (
             <Modal
                 animationType={'fade'}
-                visible={this.props.modal}
+                visible={modal}
                 transparent={true}>
-
                 <View style={styles.container}>
                     <CloseButton width={20} height={20} style={styles.closeButton} onPress={this.closeModal}/>
                     <View style={styles.header}>
-                        <CustomText text={'PASTRY ITEM TITLE'} fontSize={40} fontFamily={FontsEnum.SEN_EXTRABOLD} color={ColorsEnum.DARK_GREEN} />
+                        <CustomText text={item.title} fontSize={40} fontFamily={FontsEnum.SEN_EXTRABOLD} color={ColorsEnum.DARK_GREEN} />
                     </View>
                     <View style={styles.wrapper}>
                         <View style={styles.stepIndicator}>
@@ -68,7 +66,7 @@ class CustomModal extends Modal {
                                 }}/>
                         </View>
                         <ScrollView style={styles.recipeContent}>
-                            <CustomModalRecipeContent item={this.props.item}/>
+                            <CustomModalRecipeContent item={item} labels={labels}/>
                         </ScrollView>
                     </View>
                 </View>

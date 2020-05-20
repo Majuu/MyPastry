@@ -23,7 +23,7 @@ class RecipeListScreen extends React.Component<RecipeListPropsInterface> {
                     style={styles.itemList}
                     data={recipeList.allRecipes}
                     renderItem={(item): ReactElement =>
-                        <RecipeListItem item={item} onPress={this.openModal} />
+                        <RecipeListItem item={item} key={item.index} onPress={this.openModal} />
                     }
                     keyExtractor={(item): string => item.title}
                 />

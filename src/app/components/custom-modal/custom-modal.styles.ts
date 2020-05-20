@@ -30,7 +30,6 @@ export const styles = StyleSheet.create({
         borderRightWidth: 1,
         borderStyle: 'solid',
         borderColor: ColorsEnum.DARK_GREEN,
-        marginRight: 6,
         paddingRight: 3,
         marginLeft: 6
     },
