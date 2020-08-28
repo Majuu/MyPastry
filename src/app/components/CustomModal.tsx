@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useState} from 'react';
-import {Modal, ScrollView, StyleSheet, View} from 'react-native';
+import {Animated, Modal, ScrollView, StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
 import RecipeContent from './RecipeContent';
 import {modalActions} from '../store/actions/modal.actions';
@@ -68,7 +68,7 @@ const CustomModal: FunctionComponent<CustomModalProps> = ({item, modal, dispatch
 
     const labels = ['Checklist', 'Cook!', 'To sum up', 'Authors'];
     return (
-        <Modal animationType={'fade'} visible={modal} transparent={true}>
+        <Modal animationType={'fade'} visible={modal} transparent={true} animated={true}>
             <View style={styles.container}>
                 <CloseButton
                     width={20}

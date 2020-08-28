@@ -16,6 +16,7 @@ interface AllRecipesScreenProps {
     recipeList: {
         allRecipes: RecipeListItemInterface[];
     };
+    recipeList2?: any;
 }
 
 interface AllRecipesScreenReduxStateInterface {
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
 });
 
 const AllRecipesScreen: FunctionComponent<AllRecipesScreenProps> = ({dispatch, recipeList, navigation}: AllRecipesScreenProps): React.ReactElement => {
-    const openModal = () => dispatch({
+    const openModal = (): any  => dispatch({
         type: modalActions.SHOW_RECIPE_MODAL
     });
 
@@ -64,7 +65,8 @@ const AllRecipesScreen: FunctionComponent<AllRecipesScreenProps> = ({dispatch, r
     );
 };
 
-export default connect((state: AllRecipesScreenReduxStateInterface) => ({
+export default connect((state: any): any => ({
     modal: state.modal.isModalVisible,
-    recipeList: state.recipe
+    recipeList: state.recipe,
+    recipeList2: state.recipeList
 }))(AllRecipesScreen);

@@ -1,6 +1,5 @@
 import React, {FunctionComponent, useState} from 'react';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
-import CustomModal from '../CustomModal';
 import CustomText from '../CustomText';
 import {ColorsEnum} from '../../enums/colors.enum';
 import {FontsEnum} from '../../enums/fonts.enum';
@@ -8,6 +7,7 @@ import Timer from '../../../../assets/images/app-interaction-icons/clock.svg';
 import InactiveStar from '../../../../assets/images/app-interaction-icons/star-empty.svg';
 import ActiveStar from '../../../../assets/images/app-interaction-icons/star-active.svg';
 import {RecipeListItemInterface} from '../../interfaces/recipe-item.interface';
+import CustomModal from '../CustomModal';
 
 interface RecipeListItemProps {
     onPress: () => {};
@@ -58,47 +58,49 @@ const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({item, onPress}:
     const {title, category, time, isFavourite} = item.item;
 
     return (
-        <TouchableOpacity
-            style={styles.container}
-            activeOpacity={0.7}
-            onPress={onPress}
-        >
+        <React.Fragment>
             <CustomModal item={item.item} />
-            <View style={styles.leftMenuWrapper}>
-                <Image
-                    source={require('../../../../assets/images/muffin.jpg')}
-                    style={styles.icon}
-                />
-                <View style={styles.descriptionWrapper}>
-                    <CustomText
-                        color={ColorsEnum.DARK_GREEN}
-                        fontSize={titleFontSize}
-                        fontFamily={FontsEnum.SEN_BOLD}
-                        text={title}
+
+            <TouchableOpacity
+                style={styles.container}
+                activeOpacity={0.7}
+                onPress={onPress}
+            >
+                <View style={styles.leftMenuWrapper}>
+                    <Image
+                        source={require('../../../../assets/images/muffin.jpg')}
+                        style={styles.icon}
                     />
-                    <CustomText
-                        color={ColorsEnum.DARK_GREEN}
-                        fontSize={subtitleFontSize}
-                        fontFamily={FontsEnum.SEN_REGULAR}
-                        text={category}
-                    />
-                    <View style={styles.timeWrapper}>
-                        <Timer
-                            height={timeSize}
-                            width={timeSize}
-                            style={styles.clock}
+                    <View style={styles.descriptionWrapper}>
+                        <CustomText
+                            color={ColorsEnum.DARK_GREEN}
+                            fontSize={titleFontSize}
+                            fontFamily={FontsEnum.SEN_BOLD}
+                            text={title}
                         />
                         <CustomText
-                            text={time}
-                            fontSize={timeSize}
-                            fontFamily={FontsEnum.SEN_REGULAR}
                             color={ColorsEnum.DARK_GREEN}
+                            fontSize={subtitleFontSize}
+                            fontFamily={FontsEnum.SEN_REGULAR}
+                            text={category}
                         />
+                        <View style={styles.timeWrapper}>
+                            <Timer
+                                height={timeSize}
+                                width={timeSize}
+                                style={styles.clock}
+                            />
+                            <CustomText
+                                text={time}
+                                fontSize={timeSize}
+                                fontFamily={FontsEnum.SEN_REGULAR}
+                                color={ColorsEnum.DARK_GREEN}
+                            />
+                        </View>
                     </View>
                 </View>
-            </View>
-            {/*move item to favourites va isFavourite prop*/}
-            {!isStarActive &&
+                {/*move item to favourites va isFavourite prop*/}
+                {!isStarActive &&
           <InactiveStar
               height={30}
               width={30}
@@ -106,8 +108,8 @@ const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({item, onPress}:
                   setIsStarActive(!isStarActive);
               }}
           />
-            }
-            {isStarActive &&
+                }
+                {isStarActive &&
           <ActiveStar
               height={30}
               width={30}
@@ -115,8 +117,9 @@ const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({item, onPress}:
                   setIsStarActive(!isStarActive);
               }}
           />
-            }
-        </TouchableOpacity>
+                }
+            </TouchableOpacity>
+        </React.Fragment>
     );
 };
 
