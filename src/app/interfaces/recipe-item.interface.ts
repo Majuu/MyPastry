@@ -3,10 +3,14 @@ export interface RecipeListItemInterface {
     category: string;
     time: string;
     isFavourite: boolean;
+    description: string;
+    sumUp: string;
+    authors: string;
     image: string; //check?
-    ingredients: {
-        flour: number;
-        eggs: number;
-        milk: number;
-    };
+    ingredients: any;
+    // {
+    // flour: number;
+    // eggs: number;
+    // milk: number;
+    // };
 }
