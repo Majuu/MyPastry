@@ -2,11 +2,11 @@ import React, {FunctionComponent, ReactElement} from 'react';
 import {FlatList, Route, StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
 import {modalActions} from '../store/actions/modal.actions';
-import RecipeListNavbar from '../components/AllRecipes/RecipeListNavbar';
-import RecipeListItem from '../components/AllRecipes/RecipeListItem';
 import {Dispatch} from 'redux';
 import {RecipeListItemInterface} from '../interfaces/recipe-item.interface';
 import {ColorsEnum} from '../enums/colors.enum';
+import RecipeListItem from '../components/RecipesList/RecipeListItem';
+import RecipeListNavbar from '../components/RecipesList/RecipeListNavbar';
 
 interface AllRecipesScreenProps {
     modal: boolean;
