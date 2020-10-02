@@ -51,10 +51,13 @@ const AddRecipeScreen = (): React.ReactElement => {
           color={ColorsEnum.DARK_GREEN}
           style={styles.title}
         />
+        {/*title, ingredients, instructions, sum up, author*/}
         <View style={styles.formContainer}>
           <CustomPicker style={styles.inputsDistance} list={pastryCategories} />
           <CustomInput placeholder={'Recipe title'} style={styles.inputsDistance} />
-          <CustomInput placeholder={'Recipe Description'} style={styles.inputsDistance} />
+          <CustomInput multiline placeholder={'Recipe Description'} style={styles.inputsDistance} />
+          <CustomInput multiline placeholder={'Write some summary'} style={styles.inputsDistance} />
+          <CustomInput placeholder={'Author'} style={styles.inputsDistance} />
           <CustomButton
             text={'Submit'}
             onPress={() => {
