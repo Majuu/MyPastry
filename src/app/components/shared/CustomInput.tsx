@@ -1,9 +1,12 @@
 import { StyleSheet, TextInput, View } from 'react-native';
-import React, { FunctionComponent } from 'react';
+import React, { ChangeEvent, FunctionComponent } from 'react';
 import { ColorsEnum } from '../../enums/colors.enum';
 
 interface CustomInputProps {
   placeholder: string;
+  onChange: (e: string | ChangeEvent<any>) => void;
+  //ToDo correct the typing
+  value: any;
   multiline?: boolean;
   style?: HTMLStyleElement;
 }
@@ -28,7 +31,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const CustomInput: FunctionComponent<CustomInputProps> = ({ placeholder, multiline, style }): React.ReactElement => {
+const CustomInput: FunctionComponent<CustomInputProps> = ({ placeholder, value, onChange, multiline, style }): React.ReactElement => {
   return (
     <View style={{ ...styles.container, ...style }}>
       <TextInput
@@ -36,6 +39,8 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({ placeholder, multili
         numberOfLines={multiline ? 10 : 1}
         placeholder={placeholder}
         style={multiline ? { ...styles.input, ...styles.multilineInput } : styles.input}
+        onChangeText={onChange}
+        value={value}
       />
     </View>
   );

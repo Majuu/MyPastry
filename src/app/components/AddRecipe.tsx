@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { ColorsEnum } from '../enums/colors.enum';
 import CustomText from './shared/CustomText';
@@ -7,6 +7,9 @@ import CustomInput from './shared/CustomInput';
 import CustomPicker from './shared/CustomPicker';
 import { pastryCategories } from '../consts/pastry-categories.const';
 import CustomButton from './shared/CustomButton';
+import CustomCheckBox from './shared/CustomCheckBox';
+import { Formik } from 'formik';
+import { RecipeListItemInterface } from '../interfaces/recipe.interface';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -36,10 +39,34 @@ const styles = StyleSheet.create({
   },
   inputsDistance: {
     marginBottom: 10
+  },
+  submitButton: {
+    marginTop: 20,
+    marginBottom: 40
   }
 });
 
+const initialFormValues: RecipeListItemInterface = {
+  title: '',
+  category: '',
+  time: '',
+  isFavourite: false,
+  description: '',
+  sumUp: '',
+  authors: '',
+  ingredients: []
+};
+
+//ToDo add image later
+//ToDo add validator
 const AddRecipeScreen = (): React.ReactElement => {
+  const [isAddedToFavourites, setIsAddedToFavourites] = useState<boolean>(false);
+  const [category, setCategory] = useState<string>('');
+
+  const addToFavourites = useCallback((): void => {
+    setIsAddedToFavourites(!isAddedToFavourites);
+  }, [isAddedToFavourites, setIsAddedToFavourites]);
+
   return (
     <ScrollView style={styles.wrapper}>
       <View style={styles.container}>
@@ -51,20 +78,40 @@ const AddRecipeScreen = (): React.ReactElement => {
           color={ColorsEnum.DARK_GREEN}
           style={styles.title}
         />
-        {/*title, ingredients, instructions, sum up, author*/}
-        <View style={styles.formContainer}>
-          <CustomPicker style={styles.inputsDistance} list={pastryCategories} />
-          <CustomInput placeholder={'Recipe title'} style={styles.inputsDistance} />
-          <CustomInput multiline placeholder={'Recipe Description'} style={styles.inputsDistance} />
-          <CustomInput multiline placeholder={'Write some summary'} style={styles.inputsDistance} />
-          <CustomInput placeholder={'Author'} style={styles.inputsDistance} />
-          <CustomButton
-            text={'Submit'}
-            onPress={() => {
-              console.log('Submitted');
-            }}
-          />
-        </View>
+        <Formik
+          initialValues={initialFormValues}
+          onSubmit={values => console.log({ ...values, isFavourite: isAddedToFavourites, category })}
+        >
+          {({ handleSubmit, handleChange, values }) => (
+            <View style={styles.formContainer}>
+              <CustomInput
+                placeholder={'Recipe title'}
+                style={styles.inputsDistance}
+                onChange={handleChange('title')}
+                value={values.title}
+              />
+              <CustomPicker style={styles.inputsDistance} list={pastryCategories} onChange={setCategory} />
+              <CustomInput placeholder={'Time'} style={styles.inputsDistance} onChange={handleChange('time')} value={values.time} />
+              <CustomInput
+                multiline
+                placeholder={'Recipe Description'}
+                style={styles.inputsDistance}
+                onChange={handleChange('description')}
+                value={values.description}
+              />
+              <CustomInput
+                multiline
+                placeholder={'Write some summary'}
+                style={styles.inputsDistance}
+                onChange={handleChange('sumUp')}
+                value={values.sumUp}
+              />
+              <CustomInput placeholder={'Author'} style={styles.inputsDistance} onChange={handleChange('authors')} value={values.authors} />
+              <CustomCheckBox text={'Add to favourites'} value={isAddedToFavourites} onValueChange={addToFavourites} />
+              <CustomButton text={'Submit'} onPress={handleSubmit} style={styles.submitButton} />
+            </View>
+          )}
+        </Formik>
       </View>
     </ScrollView>
   );

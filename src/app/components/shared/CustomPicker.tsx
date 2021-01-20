@@ -1,10 +1,11 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Picker } from '@react-native-community/picker';
+import { Picker } from '@react-native-picker/picker';
 import { ColorsEnum } from '../../enums/colors.enum';
 
 interface CustomPickerProps {
   list: any[];
+  onChange: any;
   style?: any;
 }
 
@@ -23,8 +24,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const CustomPicker: FunctionComponent<CustomPickerProps> = ({ list, style }: CustomPickerProps): React.ReactElement => {
+const CustomPicker: FunctionComponent<CustomPickerProps> = ({ list, onChange, style }: CustomPickerProps): React.ReactElement => {
   const [category, setCategory] = useState<string | number>('All');
+
+  useEffect(() => {
+    onChange(category);
+  }, [category]);
 
   return (
     <View style={{ ...styles.container, ...style }}>
