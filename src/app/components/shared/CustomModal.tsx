@@ -31,13 +31,15 @@ const styles = StyleSheet.create({
     backgroundColor: ColorsEnum.LIGHT_GREEN
   },
   header: {
-    marginTop: 60,
-    marginBottom: 30
+    marginTop: 15,
+    marginBottom: 20
   },
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    flex: 1
+  topContainerWrapper: {
+    marginTop: 50,
+    paddingBottom: 15,
+    borderBottomWidth: 4,
+    borderStyle: 'solid',
+    borderColor: ColorsEnum.GREEN
   },
   closeButton: {
     position: 'absolute',
@@ -60,6 +62,7 @@ const styles = StyleSheet.create({
 // ToDo props interface
 const CustomModal: FunctionComponent<CustomModalProps> = ({ item, modal, dispatch }: CustomModalProps): React.ReactElement => {
   const [currentPosition, setCurrentPosition] = useState<number>(1);
+
   const closeModal = (): void =>
     dispatch({
       type: modalActions.HIDE_RECIPE_MODAL
@@ -70,46 +73,44 @@ const CustomModal: FunctionComponent<CustomModalProps> = ({ item, modal, dispatc
     <Modal animationType={'fade'} visible={modal} transparent={true} animated={true}>
       <View style={styles.container}>
         <CloseButton width={20} height={20} style={styles.closeButton} onPress={closeModal} />
-        <View style={styles.header}>
-          <CustomText text={item.title} fontSize={40} fontFamily={FontsEnum.SEN_EXTRABOLD} color={ColorsEnum.DARK_GREEN} />
+        <View style={styles.topContainerWrapper}>
+          <StepIndicator
+            labels={labels}
+            direction={'horizontal'}
+            currentPosition={currentPosition}
+            stepCount={4}
+            customStyles={{
+              stepIndicatorSize: 40,
+              currentStepIndicatorSize: 40,
+              separatorStrokeWidth: 4,
+              currentStepStrokeWidth: 4,
+              stepStrokeCurrentColor: ColorsEnum.GREEN,
+              stepStrokeWidth: 4,
+              stepStrokeFinishedColor: ColorsEnum.GREEN,
+              stepStrokeUnFinishedColor: ColorsEnum.GRAY,
+              separatorFinishedColor: ColorsEnum.GREEN,
+              separatorUnFinishedColor: ColorsEnum.GRAY,
+              stepIndicatorFinishedColor: ColorsEnum.GREEN,
+              stepIndicatorUnFinishedColor: ColorsEnum.WHITE,
+              stepIndicatorCurrentColor: ColorsEnum.WHITE,
+              stepIndicatorLabelFontSize: 22,
+              currentStepIndicatorLabelFontSize: 22,
+              stepIndicatorLabelCurrentColor: ColorsEnum.GREEN,
+              stepIndicatorLabelFinishedColor: ColorsEnum.WHITE,
+              stepIndicatorLabelUnFinishedColor: ColorsEnum.GRAY,
+              labelColor: '#999999',
+              labelSize: 15,
+              currentStepLabelColor: ColorsEnum.DARK_GREEN,
+              labelAlign: 'flex-start'
+            }}
+          />
         </View>
-        <View style={styles.wrapper}>
-          <View style={styles.stepIndicator}>
-            <StepIndicator
-              labels={labels}
-              direction={'vertical'}
-              currentPosition={currentPosition}
-              stepCount={4}
-              customStyles={{
-                stepIndicatorSize: 40,
-                currentStepIndicatorSize: 40,
-                separatorStrokeWidth: 4,
-                currentStepStrokeWidth: 4,
-                stepStrokeCurrentColor: ColorsEnum.GREEN,
-                stepStrokeWidth: 4,
-                stepStrokeFinishedColor: ColorsEnum.GREEN,
-                stepStrokeUnFinishedColor: ColorsEnum.GRAY,
-                separatorFinishedColor: ColorsEnum.GREEN,
-                separatorUnFinishedColor: ColorsEnum.GRAY,
-                stepIndicatorFinishedColor: ColorsEnum.GREEN,
-                stepIndicatorUnFinishedColor: ColorsEnum.WHITE,
-                stepIndicatorCurrentColor: ColorsEnum.WHITE,
-                stepIndicatorLabelFontSize: 22,
-                currentStepIndicatorLabelFontSize: 22,
-                stepIndicatorLabelCurrentColor: ColorsEnum.GREEN,
-                stepIndicatorLabelFinishedColor: ColorsEnum.WHITE,
-                stepIndicatorLabelUnFinishedColor: ColorsEnum.GRAY,
-                labelColor: '#999999',
-                labelSize: 15,
-                currentStepLabelColor: ColorsEnum.DARK_GREEN,
-                labelAlign: 'flex-start'
-              }}
-            />
+        <ScrollView style={styles.recipeContent}>
+          <View style={styles.header}>
+            <CustomText text={item.title} fontSize={40} fontFamily={FontsEnum.SEN_EXTRABOLD} color={ColorsEnum.DARK_GREEN} />
           </View>
-          <ScrollView style={styles.recipeContent}>
-            <RecipeContent item={item} labels={labels} />
-          </ScrollView>
-        </View>
+          <RecipeContent item={item} labels={labels} />
+        </ScrollView>
       </View>
     </Modal>
   );

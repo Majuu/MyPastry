@@ -3,9 +3,11 @@ import { StyleSheet, View } from 'react-native';
 import CustomText from './shared/CustomText';
 import { FontsEnum } from '../enums/fonts.enum';
 import { ColorsEnum } from '../enums/colors.enum';
+import { RecipeIngredient, RecipeListItemInterface } from '../interfaces/recipe.interface';
+import { capitalize } from 'lodash';
 
 interface RecipeContentProps {
-  item: any;
+  item: RecipeListItemInterface;
   labels: any[];
 }
 
@@ -25,13 +27,20 @@ const styles = StyleSheet.create({
   },
   ingredientWrapper: {
     display: 'flex',
+    alignItems: 'center'
+  },
+  ingredientCellPositions: {
+    display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    width: '50%'
   }
 });
 
 const RecipeContent: FunctionComponent<RecipeContentProps> = ({ item, labels }: RecipeContentProps): React.ReactElement => {
-  const ingredientsKeysNames = Object.keys(item.ingredients);
+  const { ingredients, authors, description, sumUp } = item;
+  console.log('recipe: ', item);
+  // const ingredientsKeysNames = Object.keys(item.ingredients);
   return (
     <View style={styles.container}>
       <CustomText text={labels[0]} fontSize={25} fontFamily={FontsEnum.SEN_BOLD} color={ColorsEnum.DARK_GREEN} />
@@ -43,19 +52,25 @@ const RecipeContent: FunctionComponent<RecipeContentProps> = ({ item, labels }: 
           color={ColorsEnum.DARK_GREEN}
           style={styles.ingredientsHeader}
         />
-        {ingredientsKeysNames.map((ingredient: any, key) => (
-          <View key={key} style={styles.ingredientWrapper}>
-            {/*<View><CustomText text={'test'} fontSize={20} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.DARK_GREEN}/></View>*/}
-            <View>
-              <CustomText text={ingredient} fontSize={20} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.DARK_GREEN} />
-            </View>
-            <View>
-              <CustomText
-                text={item.ingredients[ingredient]}
-                fontSize={20}
-                fontFamily={FontsEnum.SEN_REGULAR}
-                color={ColorsEnum.DARK_GREEN}
-              />
+        {ingredients.map((ingredient: RecipeIngredient) => (
+          <View key={ingredient.name} style={styles.ingredientWrapper}>
+            <View style={styles.ingredientCellPositions}>
+              <View>
+                <CustomText
+                  text={capitalize(ingredient.name)}
+                  fontSize={22}
+                  fontFamily={FontsEnum.SEN_BOLD}
+                  color={ColorsEnum.DARK_GREEN}
+                />
+              </View>
+              <View>
+                <CustomText
+                  text={capitalize(String(ingredient.amount))}
+                  fontSize={22}
+                  fontFamily={FontsEnum.SEN_BOLD}
+                  color={ColorsEnum.DARK_GREEN}
+                />
+              </View>
             </View>
           </View>
         ))}
@@ -69,7 +84,7 @@ const RecipeContent: FunctionComponent<RecipeContentProps> = ({ item, labels }: 
           color={ColorsEnum.DARK_GREEN}
           style={styles.ingredientsHeader}
         />
-        <CustomText text={item.description} fontSize={18} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.DARK_GREEN} />
+        <CustomText text={description} fontSize={18} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.DARK_GREEN} />
       </View>
       <View style={styles.sectionWrapper}>
         <CustomText
@@ -79,7 +94,7 @@ const RecipeContent: FunctionComponent<RecipeContentProps> = ({ item, labels }: 
           color={ColorsEnum.DARK_GREEN}
           style={styles.ingredientsHeader}
         />
-        <CustomText text={item.sumUp} fontSize={18} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.DARK_GREEN} />
+        <CustomText text={sumUp} fontSize={18} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.DARK_GREEN} />
       </View>
       <View style={styles.sectionWrapper}>
         <CustomText
@@ -89,7 +104,7 @@ const RecipeContent: FunctionComponent<RecipeContentProps> = ({ item, labels }: 
           color={ColorsEnum.DARK_GREEN}
           style={styles.ingredientsHeader}
         />
-        <CustomText text={item.authors} fontSize={18} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.DARK_GREEN} />
+        <CustomText text={authors} fontSize={18} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.DARK_GREEN} />
       </View>
     </View>
   );

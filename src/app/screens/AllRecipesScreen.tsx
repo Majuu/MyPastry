@@ -1,13 +1,15 @@
-import React, { FunctionComponent, ReactElement, useState } from 'react';
-import { FlatList, Route, StyleSheet, View } from 'react-native';
+import React, { FunctionComponent, ReactElement, useEffect, useState } from 'react';
+import { FlatList, ListRenderItemInfo, Route, StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import { modalActions } from '../store/actions/modal.actions';
 import { Dispatch } from 'redux';
-import { RecipeListItemInterface } from '../interfaces/recipe-item.interface';
+import { RecipeListItemInterface } from '../interfaces/recipe.interface';
 import { ColorsEnum } from '../enums/colors.enum';
 import RecipeListItem from '../components/RecipesList/RecipeListItem';
 import RecipeListNavbar from '../components/RecipesList/RecipeListNavbar';
 import CustomModal from '../components/shared/CustomModal';
+import { getAllRecipes } from '../services/dataApi';
+import { recipeActions } from '../store/actions/recipe.actions';
 
 interface AllRecipesScreenProps {
   modal: boolean;
@@ -18,13 +20,6 @@ interface AllRecipesScreenProps {
     allRecipes: RecipeListItemInterface[];
   };
   recipeList2?: any;
-}
-
-interface AllRecipesScreenReduxStateInterface {
-  modal: {
-    isModalVisible: boolean;
-  };
-  recipe: RecipeListItemInterface;
 }
 
 const styles = StyleSheet.create({
@@ -51,30 +46,44 @@ const AllRecipesScreen: FunctionComponent<AllRecipesScreenProps> = ({
 }: AllRecipesScreenProps): React.ReactElement => {
   const [itemInModal, setItemInModal] = useState<any>(null);
 
+  useEffect(() => {
+    const setAllRecipes = async () => {
+      const result = await getAllRecipes();
+      if (result) {
+        dispatch({
+          type: recipeActions.SET_ALL_RECIPES,
+          payload: result
+        });
+      }
+    };
+
+    setAllRecipes();
+  }, []);
+
   const openModal = (): any =>
     dispatch({
       type: modalActions.SHOW_RECIPE_MODAL
     });
 
-  const handleModalOpen = (item: any) => {
+  const handleModalOpen = (item: RecipeListItemInterface) => {
     setItemInModal(item);
     openModal();
   };
 
   return (
     <View style={styles.container}>
-      {itemInModal && <CustomModal item={itemInModal} />}
       <View style={styles.navbar}>
         <RecipeListNavbar navigation={navigation} />
       </View>
       <FlatList
         style={styles.itemList}
         data={recipeList.allRecipes}
-        renderItem={(item): ReactElement => (
-          <RecipeListItem item={item} key={item.index} onPress={(): void => handleModalOpen(item.item)} />
+        renderItem={(recipe: ListRenderItemInfo<RecipeListItemInterface>): ReactElement => (
+          <RecipeListItem item={recipe.item} key={recipe.item.title} onPress={(): void => handleModalOpen(recipe.item)} />
         )}
-        keyExtractor={(item): string => item.title}
+        keyExtractor={(item: RecipeListItemInterface): string => item.title}
       />
+      {itemInModal && <CustomModal item={itemInModal} />}
     </View>
   );
 };
@@ -82,7 +91,6 @@ const AllRecipesScreen: FunctionComponent<AllRecipesScreenProps> = ({
 export default connect(
   (state: any): any => ({
     modal: state.modal.isModalVisible,
-    recipeList: state.recipe,
-    recipeList2: state.recipeList
+    recipeList: state.recipe
   })
 )(AllRecipesScreen);

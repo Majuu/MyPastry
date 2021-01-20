@@ -6,13 +6,11 @@ import { FontsEnum } from '../../enums/fonts.enum';
 import Timer from '../../../../assets/images/app-interaction-icons/clock.svg';
 import InactiveStar from '../../../../assets/images/app-interaction-icons/star-empty.svg';
 import ActiveStar from '../../../../assets/images/app-interaction-icons/star-active.svg';
-import { RecipeListItemInterface } from '../../interfaces/recipe-item.interface';
+import { RecipeListItemInterface } from '../../interfaces/recipe.interface';
 
 interface RecipeListItemProps {
   onPress: () => void;
-  item: {
-    item: RecipeListItemInterface;
-  };
+  item: RecipeListItemInterface;
 }
 
 const styles = StyleSheet.create({
@@ -54,7 +52,7 @@ const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({ item, onPress 
   const titleFontSize = 23;
   const subtitleFontSize = 17;
   const timeSize = 15;
-  const { title, category, time, isFavourite } = item.item;
+  const { title, category, time, isFavourite } = item;
 
   return (
     <React.Fragment>
