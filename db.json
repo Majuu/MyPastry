@@ -1,11 +1,11 @@
 {
   "recipes": [
     {
+      "id": 1,
       "title": "Chocolate Muffin",
       "category": "muffins",
       "time": "00:30:00",
       "isFavourite": false,
-      "image": "",
       "ingredients": [
         {
           "name": "flour",
@@ -25,11 +25,11 @@
       "authors": "Maju the MasterChef"
     },
     {
+      "id": 2,
       "title": "Biscuits",
       "category": "muffins",
       "time": "00:30:00",
       "isFavourite": true,
-      "image": "",
       "ingredients": [
         {
           "name": "flour",
@@ -49,11 +49,11 @@
       "authors": "Maju the MasterChef"
     },
     {
+      "id": 3,
       "title": "Cookies",
       "category": "muffins",
       "time": "00:30:00",
       "isFavourite": false,
-      "image": "",
       "ingredients": [
         {
           "name": "flour",
@@ -73,11 +73,11 @@
       "authors": "Maju the MasterChef"
     },
     {
+      "id": 4,
       "title": "Apple Pie",
       "category": "muffins",
       "time": "00:30:00",
       "isFavourite": true,
-      "image": "",
       "ingredients": [
         {
           "name": "flour",
@@ -97,11 +97,11 @@
       "authors": "Maju the MasterChef"
     },
     {
+      "id": 5,
       "title": "Cheesecake",
       "category": "muffins",
       "time": "00:30:00",
       "isFavourite": false,
-      "image": "",
       "ingredients": [
         {
           "name": "flour",
@@ -121,11 +121,11 @@
       "authors": "Maju the MasterChef"
     },
     {
+      "id": 6,
       "title": "Pumpkin Pie",
       "category": "muffins",
       "time": "00:30:00",
       "isFavourite": true,
-      "image": "",
       "ingredients": [
         {
           "name": "flour",

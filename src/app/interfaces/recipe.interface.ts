@@ -4,6 +4,7 @@ export interface RecipeIngredient {
 }
 
 export interface RecipeListItemInterface {
+  id: number;
   title: string;
   category: string;
   time: string;

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useCallback } from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import CustomText from '../shared/CustomText';
 import { ColorsEnum } from '../../enums/colors.enum';
@@ -7,6 +7,7 @@ import Timer from '../../../../assets/images/app-interaction-icons/clock.svg';
 import InactiveStar from '../../../../assets/images/app-interaction-icons/star-empty.svg';
 import ActiveStar from '../../../../assets/images/app-interaction-icons/star-active.svg';
 import { RecipeListItemInterface } from '../../interfaces/recipe.interface';
+import { editRecipe } from '../../services/dataApi';
 
 interface RecipeListItemProps {
   onPress: () => void;
@@ -48,12 +49,16 @@ const styles = StyleSheet.create({
 });
 
 const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({ item, onPress }: RecipeListItemProps): React.ReactElement => {
-  const [isStarActive, setIsStarActive] = useState<boolean>(false);
-  const titleFontSize = 23;
-  const subtitleFontSize = 17;
-  const timeSize = 15;
-  const { title, category, time, isFavourite } = item;
+  const titleFontSize: number = 23;
+  const subtitleFontSize: number = 17;
+  const timeSize: number = 15;
+  const { title, category, time, isFavourite, id } = item;
 
+  const changeIsFavourites = useCallback(async () => {
+    await editRecipe({ ...item, isFavourite: !isFavourite }, id);
+  }, []);
+
+  //ToDO add selector + hook that will return isFavourite information
   return (
     <React.Fragment>
       <TouchableOpacity style={styles.container} activeOpacity={0.7} onPress={onPress}>
@@ -68,25 +73,8 @@ const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({ item, onPress 
             </View>
           </View>
         </View>
-        {/*move item to favourites va isFavourite prop*/}
-        {!isStarActive && (
-          <InactiveStar
-            height={30}
-            width={30}
-            onPress={(): void => {
-              setIsStarActive(!isStarActive);
-            }}
-          />
-        )}
-        {isStarActive && (
-          <ActiveStar
-            height={30}
-            width={30}
-            onPress={(): void => {
-              setIsStarActive(!isStarActive);
-            }}
-          />
-        )}
+        {!isFavourite && <InactiveStar height={30} width={30} onPress={changeIsFavourites} />}
+        {isFavourite && <ActiveStar height={30} width={30} onPress={changeIsFavourites} />}
       </TouchableOpacity>
     </React.Fragment>
   );

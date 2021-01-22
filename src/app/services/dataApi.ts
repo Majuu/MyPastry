@@ -11,3 +11,42 @@ export async function getAllRecipes(): Promise<RecipeListItemInterface> {
     throw new Error(String(response.status));
   }
 }
+
+export async function addRecipe(inputData: RecipeListItemInterface): Promise<void> {
+  const response = await fetch(`${url}/recipes`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(inputData)
+  });
+  if (response.status < 400) {
+    return await response.json();
+  } else {
+    throw new Error(String(response.status));
+  }
+}
+
+export async function getFavouritesRecipes() {
+  const response = await fetch(`${url}/recipes?isFavourite=true`);
+  if (response.status < 400) {
+    return await response.json();
+  } else {
+    throw new Error(String(response.status));
+  }
+}
+
+export async function editRecipe(inputData: RecipeListItemInterface, id: number): Promise<void> {
+  const response = await fetch(`${url}/recipes/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(inputData)
+  });
+  if (response.status < 400) {
+    return await response.json();
+  } else {
+    throw new Error(String(response.status));
+  }
+}

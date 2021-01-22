@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import { Image, Route, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { FunctionComponent, useCallback } from 'react';
+import { Route, StyleSheet, TouchableOpacity } from 'react-native';
 import CustomText from './shared/CustomText';
 import { FontsEnum } from '../enums/fonts.enum';
 import { ColorsEnum } from '../enums/colors.enum';
@@ -9,7 +9,7 @@ interface MenuItemProps {
   navigation: Route;
   screenToNavigate: ScreensEnum;
   title: string;
-  image: Image;
+  image: HTMLElement;
 }
 
 const styles = StyleSheet.create({
@@ -27,8 +27,14 @@ const styles = StyleSheet.create({
 
 const MenuItem: FunctionComponent<MenuItemProps> = ({ navigation, title, image, screenToNavigate }: MenuItemProps): React.ReactElement => {
   const textFontSize = 30;
+
+  const navigateToScreen = useCallback(() => {
+    // if (screenToNavigate === ScreensEnum.MY_RECIPES)
+    navigation.navigate(screenToNavigate, { isMyRecipes: screenToNavigate === ScreensEnum.MY_RECIPES });
+  }, []);
+
   return (
-    <TouchableOpacity style={styles.listItem} onPress={(): void => navigation.navigate(screenToNavigate)}>
+    <TouchableOpacity style={styles.listItem} onPress={navigateToScreen}>
       <CustomText text={title} fontSize={textFontSize} fontFamily={FontsEnum.SEN_BOLD} color={ColorsEnum.DARK_GREEN} />
       {image}
     </TouchableOpacity>

@@ -6,10 +6,12 @@ import extractOpacity from 'react-native-svg/lib/typescript/lib/extract/extractO
 
 interface InitialStateInterface {
   allRecipes: RecipeListItemInterface[];
+  favouriteRecipes: RecipeListItemInterface[];
 }
 
 const initialState: InitialStateInterface = {
-  allRecipes: []
+  allRecipes: [],
+  favouriteRecipes: []
 };
 
 // ToDo action typing
@@ -19,6 +21,11 @@ const recipeReducer = (state: InitialStateInterface = initialState, action: any)
       return {
         ...state,
         allRecipes: action.payload
+      };
+    case recipeActions.SET_FAVOURITE_RECIPES:
+      return {
+        ...state,
+        favouriteRecipes: action.payload
       };
     case recipeActions.GET_ALL_RECIPES:
     case recipeActions.GET_USER_RECIPES:

@@ -7,7 +7,6 @@ import { store } from './src/app/store/store';
 import MenuScreen from './src/app/screens/MenuScreen';
 import IntroScreen from './src/app/screens/IntroScreen';
 import RecipeListScreen from './src/app/screens/AllRecipesScreen';
-import MyRecipesScreen from './src/app/screens/UserRecipesScreen';
 import LearnBasicsScreen from './src/app/screens/BasicsScreen';
 import { ScreensEnum } from './src/app/enums/screens.enum';
 import AddRecipeScreen from './src/app/components/AddRecipe';
@@ -19,7 +18,7 @@ class App extends Component {
     { name: ScreensEnum.INTRO, component: IntroScreen },
     { name: ScreensEnum.MENU, component: MenuScreen },
     { name: ScreensEnum.RECIPE_LIST, component: RecipeListScreen },
-    { name: ScreensEnum.MY_RECIPES, component: MyRecipesScreen },
+    { name: ScreensEnum.MY_RECIPES, component: RecipeListScreen },
     { name: ScreensEnum.LEARN_BASICS, component: LearnBasicsScreen },
     { name: ScreensEnum.ADD_RECIPE, component: AddRecipeScreen }
   ];
