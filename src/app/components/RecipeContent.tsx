@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
 
 const RecipeContent: FunctionComponent<RecipeContentProps> = ({ item, labels }: RecipeContentProps): React.ReactElement => {
   const { ingredients, authors, description, sumUp } = item;
-  console.log('recipe: ', item);
   // const ingredientsKeysNames = Object.keys(item.ingredients);
   return (
     <View style={styles.container}>

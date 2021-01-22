@@ -29,7 +29,6 @@ const MenuItem: FunctionComponent<MenuItemProps> = ({ navigation, title, image, 
   const textFontSize = 30;
 
   const navigateToScreen = useCallback(() => {
-    // if (screenToNavigate === ScreensEnum.MY_RECIPES)
     navigation.navigate(screenToNavigate, { isMyRecipes: screenToNavigate === ScreensEnum.MY_RECIPES });
   }, []);
 

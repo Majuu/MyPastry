@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useCallback, useMemo } from 'react';
 import { Route, StyleSheet, View } from 'react-native';
 import CustomText from '../shared/CustomText';
 import CustomButton from '../shared/CustomButton';
@@ -8,6 +8,7 @@ import { ColorsEnum } from '../../enums/colors.enum';
 import { FontsEnum } from '../../enums/fonts.enum';
 import { ScreensEnum } from '../../enums/screens.enum';
 import { pastryCategories } from '../../consts/pastry-categories.const';
+import { useRoute } from '@react-navigation/native';
 
 interface RecipeListNavbarProps {
   navigation: Route;
@@ -41,22 +42,38 @@ const styles = StyleSheet.create({
   }
 });
 
-const RecipeListNavbar: FunctionComponent<RecipeListNavbarProps> = ({ navigation }: RecipeListNavbarProps) => (
-  <View style={styles.container}>
-    <CustomText
-      style={styles.header}
-      text={textPlaceholders.allRecipes.title}
-      fontSize={32}
-      fontFamily={FontsEnum.SEN_BOLD}
-      color={ColorsEnum.DARK_GREEN}
-    />
-    <View style={styles.contentWrapper}>
-      <View style={styles.picker}>
-        <CustomPicker list={pastryCategories} />
+const RecipeListNavbar: FunctionComponent<RecipeListNavbarProps> = ({ navigation }: RecipeListNavbarProps) => {
+  const route = useRoute();
+  // @ts-ignore
+  const isFavouriteRecipesScreen: boolean = route.params && route.params.isMyRecipes;
+
+  const buttonText: string = useMemo(() => {
+    const { goToAllRecipes, goToMyRecipes } = textPlaceholders.allRecipes;
+    return isFavouriteRecipesScreen ? goToAllRecipes : goToMyRecipes;
+  }, [isFavouriteRecipesScreen]);
+
+  const navigateBetweenLists = useCallback((): void => {
+    navigation.navigate(ScreensEnum.RECIPE_LIST, { isMyRecipes: !isFavouriteRecipesScreen });
+  }, [route]);
+
+  return (
+    <View style={styles.container}>
+      <CustomText
+        style={styles.header}
+        text={textPlaceholders.allRecipes.title}
+        fontSize={32}
+        fontFamily={FontsEnum.SEN_BOLD}
+        color={ColorsEnum.DARK_GREEN}
+      />
+      <View style={styles.contentWrapper}>
+        <View style={styles.picker}>
+          <CustomPicker list={pastryCategories} onChange={() => {}} />
+        </View>
+        {/*ToDo change behaviour between all and my recipes*/}
+        <CustomButton text={buttonText} onPress={navigateBetweenLists} />
       </View>
-      <CustomButton text={textPlaceholders.allRecipes.goToMyRecipes} onPress={(): void => navigation.navigate(ScreensEnum.MY_RECIPES)} />
     </View>
-  </View>
-);
+  );
+};
 
 export default RecipeListNavbar;

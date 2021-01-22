@@ -49,6 +49,7 @@ const AllRecipesScreen: FunctionComponent<AllRecipesScreenProps> = ({
   //ToDo check typing
   // @ts-ignore
   const isFavouriteRecipesScreen: boolean = route.params && route.params.isMyRecipes;
+
   const itemsToGenerate: RecipeListItemInterface[] = useMemo(() => {
     return isFavouriteRecipesScreen ? favouriteRecipes : allRecipes;
   }, [isFavouriteRecipesScreen, allRecipes, favouriteRecipes]);
@@ -74,12 +75,13 @@ const AllRecipesScreen: FunctionComponent<AllRecipesScreenProps> = ({
   };
 
   useEffect(() => {
+    console.log('Called');
     if (isFavouriteRecipesScreen) {
       setFavouriteRecipes();
     } else {
       setAllRecipes();
     }
-  }, []);
+  }, [route]);
 
   const openModal = (): any =>
     dispatch({
@@ -100,7 +102,13 @@ const AllRecipesScreen: FunctionComponent<AllRecipesScreenProps> = ({
         style={styles.itemList}
         data={itemsToGenerate}
         renderItem={(recipe: ListRenderItemInfo<RecipeListItemInterface>): ReactElement => (
-          <RecipeListItem item={recipe.item} key={recipe.item.title} onPress={(): void => handleModalOpen(recipe.item)} />
+          <RecipeListItem
+            item={recipe.item}
+            key={recipe.item.title}
+            onPress={(): void => handleModalOpen(recipe.item)}
+            setAllRecipes={setAllRecipes}
+            setFavouriteRecipes={setFavouriteRecipes}
+          />
         )}
         keyExtractor={(item: RecipeListItemInterface): string => item.title}
       />

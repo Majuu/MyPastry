@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { FlatList, Image, Route, StyleSheet, View } from 'react-native';
+import { FlatList, Route, StyleSheet, View } from 'react-native';
 import FullScreenContainer from '../components/FullScreenContainer';
 import { textPlaceholders } from '../consts/text-placeholders.const';
 import Learn from '../../../assets/images/mold.svg';

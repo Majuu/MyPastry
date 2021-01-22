@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import React, { FunctionComponent, useCallback, useEffect, useState } from 'react';
+import { Route, ScrollView, StyleSheet, View } from 'react-native';
 import { ColorsEnum } from '../enums/colors.enum';
 import CustomText from './shared/CustomText';
 import { FontsEnum } from '../enums/fonts.enum';
@@ -10,6 +10,13 @@ import CustomButton from './shared/CustomButton';
 import CustomCheckBox from './shared/CustomCheckBox';
 import { Formik } from 'formik';
 import { RecipeListItemInterface } from '../interfaces/recipe.interface';
+import { addRecipe } from '../services/dataApi';
+import { useDispatch } from 'react-redux';
+import { ScreensEnum } from '../enums/screens.enum';
+
+interface AddRecipeProps {
+  navigation: Route;
+}
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -59,13 +66,18 @@ const initialFormValues: RecipeListItemInterface = {
 
 //ToDo add image later
 //ToDo add validator
-const AddRecipeScreen = (): React.ReactElement => {
+const AddRecipeScreen: FunctionComponent<AddRecipeProps> = ({ navigation }): React.ReactElement => {
   const [isAddedToFavourites, setIsAddedToFavourites] = useState<boolean>(false);
   const [category, setCategory] = useState<string>('');
 
   const addToFavourites = useCallback((): void => {
     setIsAddedToFavourites(!isAddedToFavourites);
   }, [isAddedToFavourites, setIsAddedToFavourites]);
+
+  const addNewRecipe = async (recipeItems: RecipeListItemInterface): Promise<void> => {
+    await addRecipe(recipeItems);
+    navigation.navigate(ScreensEnum.MENU);
+  };
 
   return (
     <ScrollView style={styles.wrapper}>
@@ -80,7 +92,7 @@ const AddRecipeScreen = (): React.ReactElement => {
         />
         <Formik
           initialValues={initialFormValues}
-          onSubmit={values => console.log({ ...values, isFavourite: isAddedToFavourites, category })}
+          onSubmit={values => addNewRecipe({ ...values, isFavourite: isAddedToFavourites, category })}
         >
           {({ handleSubmit, handleChange, values }) => (
             <View style={styles.formContainer}>

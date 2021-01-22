@@ -5,7 +5,7 @@
       "title": "Chocolate Muffin",
       "category": "muffins",
       "time": "00:30:00",
-      "isFavourite": false,
+      "isFavourite": true,
       "ingredients": [
         {
           "name": "flour",
@@ -29,7 +29,7 @@
       "title": "Biscuits",
       "category": "muffins",
       "time": "00:30:00",
-      "isFavourite": true,
+      "isFavourite": false,
       "ingredients": [
         {
           "name": "flour",
@@ -53,7 +53,7 @@
       "title": "Cookies",
       "category": "muffins",
       "time": "00:30:00",
-      "isFavourite": false,
+      "isFavourite": true,
       "ingredients": [
         {
           "name": "flour",
@@ -77,7 +77,7 @@
       "title": "Apple Pie",
       "category": "muffins",
       "time": "00:30:00",
-      "isFavourite": true,
+      "isFavourite": false,
       "ingredients": [
         {
           "name": "flour",
@@ -101,7 +101,7 @@
       "title": "Cheesecake",
       "category": "muffins",
       "time": "00:30:00",
-      "isFavourite": false,
+      "isFavourite": true,
       "ingredients": [
         {
           "name": "flour",
@@ -125,7 +125,7 @@
       "title": "Pumpkin Pie",
       "category": "muffins",
       "time": "00:30:00",
-      "isFavourite": true,
+      "isFavourite": false,
       "ingredients": [
         {
           "name": "flour",

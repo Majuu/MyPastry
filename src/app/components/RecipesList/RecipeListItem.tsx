@@ -12,6 +12,8 @@ import { editRecipe } from '../../services/dataApi';
 interface RecipeListItemProps {
   onPress: () => void;
   item: RecipeListItemInterface;
+  setAllRecipes: () => void;
+  setFavouriteRecipes: () => void;
 }
 
 const styles = StyleSheet.create({
@@ -48,7 +50,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({ item, onPress }: RecipeListItemProps): React.ReactElement => {
+const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({
+  item,
+  onPress,
+  setAllRecipes,
+  setFavouriteRecipes
+}: RecipeListItemProps): React.ReactElement => {
   const titleFontSize: number = 23;
   const subtitleFontSize: number = 17;
   const timeSize: number = 15;
@@ -56,9 +63,10 @@ const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({ item, onPress 
 
   const changeIsFavourites = useCallback(async () => {
     await editRecipe({ ...item, isFavourite: !isFavourite }, id);
-  }, []);
+    setFavouriteRecipes();
+    setAllRecipes();
+  }, [item, isFavourite, id]);
 
-  //ToDO add selector + hook that will return isFavourite information
   return (
     <React.Fragment>
       <TouchableOpacity style={styles.container} activeOpacity={0.7} onPress={onPress}>
