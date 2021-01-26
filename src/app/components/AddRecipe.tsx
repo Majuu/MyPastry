@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useCallback, useEffect, useState } from 'react';
+import React, { FunctionComponent, useCallback, useState } from 'react';
 import { Route, ScrollView, StyleSheet, View } from 'react-native';
 import { ColorsEnum } from '../enums/colors.enum';
 import CustomText from './shared/CustomText';
@@ -11,12 +11,10 @@ import CustomCheckBox from './shared/CustomCheckBox';
 import { Formik } from 'formik';
 import { RecipeListItemInterface } from '../interfaces/recipe.interface';
 import { addRecipe } from '../services/dataApi';
-import { useDispatch } from 'react-redux';
 import { ScreensEnum } from '../enums/screens.enum';
-
-interface AddRecipeProps {
-  navigation: Route;
-}
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { useNavigation } from '@react-navigation/native';
+import { calculateTime } from '../helpers/calculateTime';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -66,9 +64,14 @@ const initialFormValues: RecipeListItemInterface = {
 
 //ToDo add image later
 //ToDo add validator
-const AddRecipeScreen: FunctionComponent<AddRecipeProps> = ({ navigation }): React.ReactElement => {
+const AddRecipeScreen: FunctionComponent<{}> = (): React.ReactElement => {
   const [isAddedToFavourites, setIsAddedToFavourites] = useState<boolean>(false);
+  const [time, setTime] = useState<any>(undefined);
   const [category, setCategory] = useState<string>('');
+  const [isTimePickerVisible, setIsTimePickerVisible] = useState<boolean>(false);
+  const navigation: Route = useNavigation();
+  const initialDate: Date = new Date();
+  initialDate.setHours(0, 0, 0, 0);
 
   const addToFavourites = useCallback((): void => {
     setIsAddedToFavourites(!isAddedToFavourites);
@@ -78,6 +81,19 @@ const AddRecipeScreen: FunctionComponent<AddRecipeProps> = ({ navigation }): Rea
     await addRecipe(recipeItems);
     navigation.navigate(ScreensEnum.MENU);
   };
+
+  const setTimePickerVisibility = useCallback((): void => {
+    setIsTimePickerVisible(!isTimePickerVisible);
+  }, [isTimePickerVisible]);
+
+  const setTimeValueAndCloseTimePicker = useCallback(
+    (event, timeValue) => {
+      setTimePickerVisibility();
+      const calculatedTime: string = calculateTime(initialDate, timeValue);
+      setTime(calculatedTime);
+    },
+    [isTimePickerVisible]
+  );
 
   return (
     <ScrollView style={styles.wrapper}>
@@ -92,7 +108,7 @@ const AddRecipeScreen: FunctionComponent<AddRecipeProps> = ({ navigation }): Rea
         />
         <Formik
           initialValues={initialFormValues}
-          onSubmit={values => addNewRecipe({ ...values, isFavourite: isAddedToFavourites, category })}
+          onSubmit={values => addNewRecipe({ ...values, isFavourite: isAddedToFavourites, category, time })}
         >
           {({ handleSubmit, handleChange, values }) => (
             <View style={styles.formContainer}>
@@ -103,7 +119,8 @@ const AddRecipeScreen: FunctionComponent<AddRecipeProps> = ({ navigation }): Rea
                 value={values.title}
               />
               <CustomPicker style={styles.inputsDistance} list={pastryCategories} onChange={setCategory} />
-              <CustomInput placeholder={'Time'} style={styles.inputsDistance} onChange={handleChange('time')} value={values.time} />
+              <CustomButton text={'Pick time'} onPress={setTimePickerVisibility} />
+              {isTimePickerVisible && <DateTimePicker value={initialDate} mode={'time'} onChange={setTimeValueAndCloseTimePicker} />}
               <CustomInput
                 multiline
                 placeholder={'Recipe Description'}

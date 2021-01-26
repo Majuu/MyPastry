@@ -27,7 +27,7 @@
     {
       "id": 2,
       "title": "Biscuits",
-      "category": "muffins",
+      "category": "cookies",
       "time": "00:30:00",
       "isFavourite": false,
       "ingredients": [
@@ -51,7 +51,7 @@
     {
       "id": 3,
       "title": "Cookies",
-      "category": "muffins",
+      "category": "cookies",
       "time": "00:30:00",
       "isFavourite": true,
       "ingredients": [
@@ -75,7 +75,7 @@
     {
       "id": 4,
       "title": "Apple Pie",
-      "category": "muffins",
+      "category": "cakes",
       "time": "00:30:00",
       "isFavourite": false,
       "ingredients": [
@@ -99,7 +99,7 @@
     {
       "id": 5,
       "title": "Cheesecake",
-      "category": "muffins",
+      "category": "cakes",
       "time": "00:30:00",
       "isFavourite": true,
       "ingredients": [
@@ -123,7 +123,7 @@
     {
       "id": 6,
       "title": "Pumpkin Pie",
-      "category": "muffins",
+      "category": "cakes",
       "time": "00:30:00",
       "isFavourite": false,
       "ingredients": [

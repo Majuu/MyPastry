@@ -1,4 +1,4 @@
-import React, { Component, ReactElement, ReactNode } from 'react';
+import React, { Component, FunctionComponent, ReactElement, ReactNode } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
@@ -11,10 +11,15 @@ import LearnBasicsScreen from './src/app/screens/BasicsScreen';
 import { ScreensEnum } from './src/app/enums/screens.enum';
 import AddRecipeScreen from './src/app/components/AddRecipe';
 
+interface StackedScreensInterface {
+  name: ScreensEnum;
+  component: FunctionComponent<any>;
+}
+
 const Stack = createStackNavigator();
 
 class App extends Component {
-  private stackScreens = [
+  private stackScreens: StackedScreensInterface[] = [
     { name: ScreensEnum.INTRO, component: IntroScreen },
     { name: ScreensEnum.MENU, component: MenuScreen },
     { name: ScreensEnum.RECIPE_LIST, component: RecipeListScreen },
@@ -29,7 +34,7 @@ class App extends Component {
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             {this.stackScreens.map(
-              (item): ReactElement => (
+              (item: StackedScreensInterface): ReactElement => (
                 <Stack.Screen key={item.name} name={item.name} component={item.component} />
               )
             )}

@@ -4,7 +4,6 @@ export interface RecipeIngredient {
 }
 
 export interface RecipeListItemInterface {
-  id: number;
   title: string;
   category: string;
   time: string;
@@ -13,5 +12,6 @@ export interface RecipeListItemInterface {
   sumUp: string;
   authors: string;
   ingredients: RecipeIngredient[];
+  id?: number;
   // image: string; //check?
 }
