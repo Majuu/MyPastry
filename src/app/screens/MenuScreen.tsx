@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { FlatList, Route, StyleSheet, View } from 'react-native';
-import { StackActions, NavigationAction } from '@react-navigation/native';
 import FullScreenContainer from '../components/FullScreenContainer';
 import { textPlaceholders } from '../consts/text-placeholders.const';
 import Learn from '../../../assets/images/mold.svg';

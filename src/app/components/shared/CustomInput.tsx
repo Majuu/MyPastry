@@ -1,6 +1,7 @@
 import { StyleSheet, TextInput, View } from 'react-native';
 import React, { ChangeEvent, FunctionComponent } from 'react';
 import { ColorsEnum } from '../../enums/colors.enum';
+import { FontsEnum } from '../../enums/fonts.enum';
 
 interface CustomInputProps {
   placeholder: string;
@@ -16,15 +17,16 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   input: {
-    borderStyle: 'solid',
     paddingLeft: 15,
     paddingRight: 15,
     fontSize: 18,
+    borderStyle: 'solid',
     borderWidth: 3,
     borderColor: ColorsEnum.GREEN,
     borderRadius: 5,
     width: '100%',
-    textAlignVertical: 'center'
+    textAlignVertical: 'center',
+    fontFamily: FontsEnum.SEN_REGULAR
   },
   multilineInput: {
     textAlignVertical: 'top'

@@ -2,11 +2,13 @@ import React, { FunctionComponent, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { ColorsEnum } from '../../enums/colors.enum';
+import { PastryListCategories } from '../../consts/pastry-categories.const';
+import { FontsEnum } from '../../enums/fonts.enum';
 
 interface CustomPickerProps {
-  list: any[];
-  onChange: any;
-  style?: any;
+  list: PastryListCategories[];
+  onChange: Function;
+  style?: HTMLStyleElement;
 }
 
 const styles = StyleSheet.create({

@@ -12,9 +12,10 @@ import { Formik } from 'formik';
 import { RecipeListItemInterface } from '../interfaces/recipe.interface';
 import { addRecipe } from '../services/dataApi';
 import { ScreensEnum } from '../enums/screens.enum';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 import { calculateTime } from '../helpers/calculateTime';
+import { AddRecipeValidationSchema } from '../helpers/validator';
+import SlidingTimePicker from './SlidingTimePicker';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -48,6 +49,9 @@ const styles = StyleSheet.create({
   submitButton: {
     marginTop: 20,
     marginBottom: 40
+  },
+  timeButton: {
+    marginBottom: 10
   }
 });
 
@@ -55,10 +59,10 @@ const initialFormValues: RecipeListItemInterface = {
   title: '',
   category: '',
   time: '',
-  isFavourite: false,
   description: '',
   sumUp: '',
   authors: '',
+  isFavourite: false,
   ingredients: []
 };
 
@@ -66,34 +70,30 @@ const initialFormValues: RecipeListItemInterface = {
 //ToDo add validator
 const AddRecipeScreen: FunctionComponent<{}> = (): React.ReactElement => {
   const [isAddedToFavourites, setIsAddedToFavourites] = useState<boolean>(false);
-  const [time, setTime] = useState<any>(undefined);
+  const [time, setTime] = useState<string>('00:00:00');
   const [category, setCategory] = useState<string>('');
-  const [isTimePickerVisible, setIsTimePickerVisible] = useState<boolean>(false);
   const navigation: Route = useNavigation();
-  const initialDate: Date = new Date();
-  initialDate.setHours(0, 0, 0, 0);
 
   const addToFavourites = useCallback((): void => {
     setIsAddedToFavourites(!isAddedToFavourites);
   }, [isAddedToFavourites, setIsAddedToFavourites]);
 
+  //ToDo add error handling
   const addNewRecipe = async (recipeItems: RecipeListItemInterface): Promise<void> => {
-    await addRecipe(recipeItems);
-    navigation.navigate(ScreensEnum.MENU);
+    try {
+      await AddRecipeValidationSchema.validate(recipeItems);
+      await addRecipe(recipeItems);
+      navigation.navigate(ScreensEnum.MENU);
+    } catch (e) {
+      //ToDo fireup the error message
+      console.log(e);
+    }
   };
 
-  const setTimePickerVisibility = useCallback((): void => {
-    setIsTimePickerVisible(!isTimePickerVisible);
-  }, [isTimePickerVisible]);
-
-  const setTimeValueAndCloseTimePicker = useCallback(
-    (event, timeValue) => {
-      setTimePickerVisibility();
-      const calculatedTime: string = calculateTime(initialDate, timeValue);
-      setTime(calculatedTime);
-    },
-    [isTimePickerVisible]
-  );
+  const setTimeValue = useCallback(async timeValue => {
+    const calculatedTime: string = calculateTime(timeValue);
+    setTime(calculatedTime);
+  }, []);
 
   return (
     <ScrollView style={styles.wrapper}>
@@ -112,18 +112,12 @@ const AddRecipeScreen: FunctionComponent<{}> = (): React.ReactElement => {
         >
           {({ handleSubmit, handleChange, values }) => (
             <View style={styles.formContainer}>
-              <CustomInput
-                placeholder={'Recipe title'}
-                style={styles.inputsDistance}
-                onChange={handleChange('title')}
-                value={values.title}
-              />
+              <CustomInput placeholder={'Title'} style={styles.inputsDistance} onChange={handleChange('title')} value={values.title} />
               <CustomPicker style={styles.inputsDistance} list={pastryCategories} onChange={setCategory} />
-              <CustomButton text={'Pick time'} onPress={setTimePickerVisibility} />
-              {isTimePickerVisible && <DateTimePicker value={initialDate} mode={'time'} onChange={setTimeValueAndCloseTimePicker} />}
+              <SlidingTimePicker step={5} maxValue={120} minValue={0} onValueChange={setTimeValue} timeValue={time} />
               <CustomInput
                 multiline
-                placeholder={'Recipe Description'}
+                placeholder={'Description'}
                 style={styles.inputsDistance}
                 onChange={handleChange('description')}
                 value={values.description}
