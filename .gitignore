@@ -7,3 +7,4 @@ android/.gradle
 android/local.properties
 android/*.iml
 android/app/build
+android/app/*.iml
