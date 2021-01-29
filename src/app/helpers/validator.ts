@@ -10,9 +10,6 @@ export const AddRecipeValidationSchema = Yup.object().shape({
   description: Yup.string()
     .min(1, 'description')
     .max(500),
-  sumUp: Yup.string()
-    .min(1, 'sumUp')
-    .max(500),
   authors: Yup.string()
     .min(1, 'authors')
     .max(100),

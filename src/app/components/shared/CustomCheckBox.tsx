@@ -9,6 +9,7 @@ interface CustomCheckBoxProps {
   text: string;
   value: boolean;
   onValueChange: any;
+  style?: HTMLStyleElement;
 }
 
 const styles = StyleSheet.create({
@@ -19,9 +20,9 @@ const styles = StyleSheet.create({
   }
 });
 
-const CustomCheckBox: FunctionComponent<CustomCheckBoxProps> = ({ text, value, onValueChange }) => {
+const CustomCheckBox: FunctionComponent<CustomCheckBoxProps> = ({ text, value, onValueChange, style }) => {
   return (
-    <View style={styles.wrapper}>
+    <View style={{ ...styles.wrapper, ...style }}>
       <CheckBox value={value} onValueChange={onValueChange} />
       <CustomText text={text} fontSize={17} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.DARK_GREEN} />
     </View>

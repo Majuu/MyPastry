@@ -17,10 +17,10 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     borderStyle: 'solid',
-    borderWidth: 3,
+    borderWidth: 2,
     borderColor: ColorsEnum.GREEN,
-    borderRadius: 5,
-    marginBottom: 10,
+    borderRadius: 15,
+    marginBottom: 20,
     paddingTop: 15,
     paddingBottom: 15,
     display: 'flex',

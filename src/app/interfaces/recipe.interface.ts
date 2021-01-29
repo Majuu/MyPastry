@@ -9,7 +9,6 @@ export interface RecipeListItemInterface {
   time: string;
   isFavourite: boolean;
   description: string;
-  sumUp: string;
   authors: string;
   ingredients: RecipeIngredient[];
   id?: number;

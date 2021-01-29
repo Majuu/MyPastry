@@ -8,6 +8,7 @@ import InactiveStar from '../../../../assets/images/app-interaction-icons/star-e
 import ActiveStar from '../../../../assets/images/app-interaction-icons/star-active.svg';
 import { RecipeListItemInterface } from '../../interfaces/recipe.interface';
 import { editRecipe } from '../../services/dataApi';
+import { LinearGradient } from 'react-native-svg';
 
 interface RecipeListItemProps {
   onPress: () => void;
@@ -47,6 +48,11 @@ const styles = StyleSheet.create({
   },
   clock: {
     marginRight: 5
+  },
+  linearGradient: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%'
   }
 });
 
@@ -71,7 +77,15 @@ const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({
     <React.Fragment>
       <TouchableOpacity style={styles.container} activeOpacity={0.7} onPress={onPress}>
         <View style={styles.leftMenuWrapper}>
-          <Image source={require('../../../../assets/images/muffin.jpg')} style={styles.icon} />
+          <Image source={require('../../../../assets/images/muffin.jpg')} style={styles.icon}>
+            {/*//ToDo linear gradient*/}
+            {/*<LinearGradient*/}
+            {/*  ref={r => (gradiant = r)}*/}
+            {/*  locations={[0, 1.0]}*/}
+            {/*  colors={['rgba(0,0,0,0.00)', 'rgba(0,0,0,0.80)']}*/}
+            {/*  style={styles.linearGradient}*/}
+            {/*/>*/}
+          </Image>
           <View style={styles.descriptionWrapper}>
             <CustomText color={ColorsEnum.DARK_GREEN} fontSize={titleFontSize} fontFamily={FontsEnum.SEN_BOLD} text={title} />
             <CustomText color={ColorsEnum.DARK_GREEN} fontSize={subtitleFontSize} fontFamily={FontsEnum.SEN_REGULAR} text={category} />

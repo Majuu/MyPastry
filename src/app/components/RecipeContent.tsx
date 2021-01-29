@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 });
 
 const RecipeContent: FunctionComponent<RecipeContentProps> = ({ item, labels }: RecipeContentProps): React.ReactElement => {
-  const { ingredients, authors, description, sumUp } = item;
+  const { ingredients, authors, description } = item;
   // const ingredientsKeysNames = Object.keys(item.ingredients);
   return (
     <View style={styles.container}>
@@ -84,16 +84,6 @@ const RecipeContent: FunctionComponent<RecipeContentProps> = ({ item, labels }: 
           style={styles.ingredientsHeader}
         />
         <CustomText text={description} fontSize={18} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.DARK_GREEN} />
-      </View>
-      <View style={styles.sectionWrapper}>
-        <CustomText
-          text={labels[2]}
-          fontSize={25}
-          fontFamily={FontsEnum.SEN_BOLD}
-          color={ColorsEnum.DARK_GREEN}
-          style={styles.ingredientsHeader}
-        />
-        <CustomText text={sumUp} fontSize={18} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.DARK_GREEN} />
       </View>
       <View style={styles.sectionWrapper}>
         <CustomText

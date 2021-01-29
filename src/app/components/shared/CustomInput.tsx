@@ -7,7 +7,8 @@ interface CustomInputProps {
   placeholder: string;
   onChange: (e: string | ChangeEvent<any>) => void;
   //ToDo correct the typing
-  value: any;
+  value: string;
+  autoFocus: boolean;
   multiline?: boolean;
   style?: HTMLStyleElement;
 }
@@ -21,19 +22,27 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     fontSize: 18,
     borderStyle: 'solid',
-    borderWidth: 3,
+    borderWidth: 2,
     borderColor: ColorsEnum.GREEN,
-    borderRadius: 5,
+    borderRadius: 15,
     width: '100%',
     textAlignVertical: 'center',
-    fontFamily: FontsEnum.SEN_REGULAR
+    fontFamily: FontsEnum.SEN_REGULAR,
+    color: ColorsEnum.DARK_GREEN
   },
   multilineInput: {
     textAlignVertical: 'top'
   }
 });
 
-const CustomInput: FunctionComponent<CustomInputProps> = ({ placeholder, value, onChange, multiline, style }): React.ReactElement => {
+const CustomInput: FunctionComponent<CustomInputProps> = ({
+  placeholder,
+  value,
+  onChange,
+  autoFocus,
+  multiline,
+  style
+}): React.ReactElement => {
   return (
     <View style={{ ...styles.container, ...style }}>
       <TextInput
@@ -43,6 +52,7 @@ const CustomInput: FunctionComponent<CustomInputProps> = ({ placeholder, value, 
         style={multiline ? { ...styles.input, ...styles.multilineInput } : styles.input}
         onChangeText={onChange}
         value={value}
+        autoFocus={autoFocus}
       />
     </View>
   );

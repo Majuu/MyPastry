@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { ColorsEnum } from '../../enums/colors.enum';
 import { PastryListCategories } from '../../consts/pastry-categories.const';
-import { FontsEnum } from '../../enums/fonts.enum';
 
 interface CustomPickerProps {
   list: PastryListCategories[];
@@ -13,9 +12,9 @@ interface CustomPickerProps {
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 3,
+    borderWidth: 2,
     borderColor: ColorsEnum.GREEN,
-    borderRadius: 5,
+    borderRadius: 15,
     width: '100%',
     height: 50
   },

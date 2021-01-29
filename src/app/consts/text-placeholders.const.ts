@@ -12,6 +12,7 @@ export const textPlaceholders = {
   },
   allRecipes: {
     title: 'All recipes in one place',
+    myRecipesTitle: 'My saved recipes',
     goToMyRecipes: 'My own recipes',
     goToAllRecipes: 'All recipes'
   }
