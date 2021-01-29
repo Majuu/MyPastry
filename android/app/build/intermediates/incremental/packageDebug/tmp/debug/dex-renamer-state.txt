@@ -1,4 +1,0 @@
-#Wed Apr 08 16:31:12 CEST 2020
-base.0=/home/artur/Projects/react-native/PastryApp/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

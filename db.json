@@ -1,76 +1,142 @@
 {
-  "allRecipes": [
+  "recipes": [
     {
+      "id": 1,
       "title": "Chocolate Muffin",
       "category": "muffins",
       "time": "00:30:00",
-      "isFavourite": false,
-      "image": "",
-      "ingredients": {
-        "flour": 500,
-        "eggs": 3,
-        "milk": 300
-      }
+      "isFavourite": true,
+      "ingredients": [
+        {
+          "name": "flour",
+          "amount": 500
+        },
+        {
+          "name": "eggs",
+          "amount": 3
+        },
+        {
+          "name": "milk",
+          "amount": 300
+        }
+      ],
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "authors": "Maju the MasterChef"
     },
     {
+      "id": 2,
       "title": "Biscuits",
-      "category": "muffins",
+      "category": "cookies",
       "time": "00:30:00",
       "isFavourite": false,
-      "image": "",
-      "ingredients": {
-        "flour": 500,
-        "eggs": 3,
-        "milk": 300
-      }
+      "ingredients": [
+        {
+          "name": "flour",
+          "amount": 500
+        },
+        {
+          "name": "eggs",
+          "amount": 3
+        },
+        {
+          "name": "milk",
+          "amount": 300
+        }
+      ],
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "authors": "Maju the MasterChef"
     },
     {
+      "id": 3,
       "title": "Cookies",
-      "category": "muffins",
+      "category": "cookies",
       "time": "00:30:00",
-      "isFavourite": false,
-      "image": "",
-      "ingredients": {
-        "flour": 500,
-        "eggs": 3,
-        "milk": 300
-      }
+      "isFavourite": true,
+      "ingredients": [
+        {
+          "name": "flour",
+          "amount": 500
+        },
+        {
+          "name": "eggs",
+          "amount": 3
+        },
+        {
+          "name": "milk",
+          "amount": 300
+        }
+      ],
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "authors": "Maju the MasterChef"
     },
     {
+      "id": 4,
       "title": "Apple Pie",
-      "category": "muffins",
+      "category": "cakes",
       "time": "00:30:00",
       "isFavourite": false,
-      "image": "",
-      "ingredients": {
-        "flour": 500,
-        "eggs": 3,
-        "milk": 300
-      }
+      "ingredients": [
+        {
+          "name": "flour",
+          "amount": 500
+        },
+        {
+          "name": "eggs",
+          "amount": 3
+        },
+        {
+          "name": "milk",
+          "amount": 300
+        }
+      ],
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "authors": "Maju the MasterChef"
     },
     {
+      "id": 5,
       "title": "Cheesecake",
-      "category": "muffins",
+      "category": "cakes",
       "time": "00:30:00",
-      "isFavourite": false,
-      "image": "",
-      "ingredients": {
-        "flour": 500,
-        "eggs": 3,
-        "milk": 300
-      }
+      "isFavourite": true,
+      "ingredients": [
+        {
+          "name": "flour",
+          "amount": 500
+        },
+        {
+          "name": "eggs",
+          "amount": 3
+        },
+        {
+          "name": "milk",
+          "amount": 300
+        }
+      ],
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "authors": "Maju the MasterChef"
     },
     {
+      "id": 6,
       "title": "Pumpkin Pie",
-      "category": "muffins",
+      "category": "cakes",
       "time": "00:30:00",
       "isFavourite": false,
-      "image": "",
-      "ingredients": {
-        "flour": 500,
-        "eggs": 3,
-        "milk": 300
-      }
+      "ingredients": [
+        {
+          "name": "flour",
+          "amount": 500
+        },
+        {
+          "name": "eggs",
+          "amount": 3
+        },
+        {
+          "name": "milk",
+          "amount": 300
+        }
+      ],
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "authors": "Maju the MasterChef"
     }
   ]
 }

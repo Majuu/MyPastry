@@ -1,2 +1,9 @@
 /node_modules
 .idea
+
+#Android
+android/.idea
+android/.gradle
+android/*.iml
+android/app/build
+android/app/*.iml

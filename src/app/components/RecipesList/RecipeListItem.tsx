@@ -1,123 +1,105 @@
-import React, {FunctionComponent, useState} from 'react';
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
-import CustomModal from '../CustomModal';
-import CustomText from '../CustomText';
-import {ColorsEnum} from '../../enums/colors.enum';
-import {FontsEnum} from '../../enums/fonts.enum';
+import React, { FunctionComponent, useCallback } from 'react';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import CustomText from '../shared/CustomText';
+import { ColorsEnum } from '../../enums/colors.enum';
+import { FontsEnum } from '../../enums/fonts.enum';
 import Timer from '../../../../assets/images/app-interaction-icons/clock.svg';
 import InactiveStar from '../../../../assets/images/app-interaction-icons/star-empty.svg';
 import ActiveStar from '../../../../assets/images/app-interaction-icons/star-active.svg';
-import {RecipeListItemInterface} from '../../interfaces/recipe-item.interface';
+import { RecipeListItemInterface } from '../../interfaces/recipe.interface';
+import { editRecipe } from '../../services/dataApi';
+import { LinearGradient } from 'react-native-svg';
 
 interface RecipeListItemProps {
-    onPress: () => {};
-    item: {
-        item: RecipeListItemInterface;
-    };
+  onPress: () => void;
+  item: RecipeListItemInterface;
+  setAllRecipes: () => void;
+  setFavouriteRecipes: () => void;
 }
 
 const styles = StyleSheet.create({
-    container: {
-        padding: 20,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        backgroundColor: ColorsEnum.LIGHT_GREEN,
-        alignItems: 'center',
-        borderRadius: 10,
-        borderColor: ColorsEnum.GREEN,
-        borderWidth: 2
-    },
-    leftMenuWrapper: {
-        flexDirection: 'row'
-    },
-    descriptionWrapper: {
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        justifyContent: 'space-between'
-    },
-    icon: {
-        width: 80,
-        height: 80,
-        marginRight: 20
-    },
-    timeWrapper: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginTop: 5
-    },
-    clock: {
-        marginRight: 5
-    }
+  container: {
+    padding: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: ColorsEnum.LIGHT_GREEN,
+    alignItems: 'center',
+    borderRadius: 10,
+    borderColor: ColorsEnum.GREEN,
+    borderWidth: 2
+  },
+  leftMenuWrapper: {
+    flexDirection: 'row'
+  },
+  descriptionWrapper: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between'
+  },
+  icon: {
+    width: 80,
+    height: 80,
+    marginRight: 20
+  },
+  timeWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 5
+  },
+  clock: {
+    marginRight: 5
+  },
+  linearGradient: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%'
+  }
 });
 
-const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({item, onPress}: RecipeListItemProps): React.ReactElement => {
-    const [isStarActive, setIsStarActive] = useState<boolean>(false);
-    const titleFontSize = 23;
-    const subtitleFontSize = 17;
-    const timeSize = 15;
-    const {title, category, time, isFavourite} = item.item;
+const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({
+  item,
+  onPress,
+  setAllRecipes,
+  setFavouriteRecipes
+}: RecipeListItemProps): React.ReactElement => {
+  const titleFontSize: number = 23;
+  const subtitleFontSize: number = 17;
+  const timeSize: number = 15;
+  const { title, category, time, isFavourite, id } = item;
 
-    return (
-        <TouchableOpacity
-            style={styles.container}
-            activeOpacity={0.7}
-            onPress={onPress}
-        >
-            <CustomModal item={item.item} />
-            <View style={styles.leftMenuWrapper}>
-                <Image
-                    source={require('../../../../assets/images/muffin.jpg')}
-                    style={styles.icon}
-                />
-                <View style={styles.descriptionWrapper}>
-                    <CustomText
-                        color={ColorsEnum.DARK_GREEN}
-                        fontSize={titleFontSize}
-                        fontFamily={FontsEnum.SEN_BOLD}
-                        text={title}
-                    />
-                    <CustomText
-                        color={ColorsEnum.DARK_GREEN}
-                        fontSize={subtitleFontSize}
-                        fontFamily={FontsEnum.SEN_REGULAR}
-                        text={category}
-                    />
-                    <View style={styles.timeWrapper}>
-                        <Timer
-                            height={timeSize}
-                            width={timeSize}
-                            style={styles.clock}
-                        />
-                        <CustomText
-                            text={time}
-                            fontSize={timeSize}
-                            fontFamily={FontsEnum.SEN_REGULAR}
-                            color={ColorsEnum.DARK_GREEN}
-                        />
-                    </View>
-                </View>
+  const changeIsFavourites = useCallback(async () => {
+    await editRecipe({ ...item, isFavourite: !isFavourite }, id);
+    setFavouriteRecipes();
+    setAllRecipes();
+  }, [item, isFavourite, id]);
+
+  return (
+    <React.Fragment>
+      <TouchableOpacity style={styles.container} activeOpacity={0.7} onPress={onPress}>
+        <View style={styles.leftMenuWrapper}>
+          <Image source={require('../../../../assets/images/muffin.jpg')} style={styles.icon}>
+            {/*//ToDo linear gradient*/}
+            {/*<LinearGradient*/}
+            {/*  ref={r => (gradiant = r)}*/}
+            {/*  locations={[0, 1.0]}*/}
+            {/*  colors={['rgba(0,0,0,0.00)', 'rgba(0,0,0,0.80)']}*/}
+            {/*  style={styles.linearGradient}*/}
+            {/*/>*/}
+          </Image>
+          <View style={styles.descriptionWrapper}>
+            <CustomText color={ColorsEnum.DARK_GREEN} fontSize={titleFontSize} fontFamily={FontsEnum.SEN_BOLD} text={title} />
+            <CustomText color={ColorsEnum.DARK_GREEN} fontSize={subtitleFontSize} fontFamily={FontsEnum.SEN_REGULAR} text={category} />
+            <View style={styles.timeWrapper}>
+              <Timer height={timeSize} width={timeSize} style={styles.clock} />
+              <CustomText text={time} fontSize={timeSize} fontFamily={FontsEnum.SEN_REGULAR} color={ColorsEnum.DARK_GREEN} />
             </View>
-            {/*move item to favourites va isFavourite prop*/}
-            {!isStarActive &&
-          <InactiveStar
-              height={30}
-              width={30}
-              onPress={(): void => {
-                  setIsStarActive(!isStarActive);
-              }}
-          />
-            }
-            {isStarActive &&
-          <ActiveStar
-              height={30}
-              width={30}
-              onPress={(): void => {
-                  setIsStarActive(!isStarActive);
-              }}
-          />
-            }
-        </TouchableOpacity>
-    );
+          </View>
+        </View>
+        {!isFavourite && <InactiveStar height={30} width={30} onPress={changeIsFavourites} />}
+        {isFavourite && <ActiveStar height={30} width={30} onPress={changeIsFavourites} />}
+      </TouchableOpacity>
+    </React.Fragment>
+  );
 };
 
 export default RecipeListItem;
