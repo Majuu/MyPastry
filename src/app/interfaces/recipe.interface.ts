@@ -1,6 +1,9 @@
+export type AmountType = 'none' | 'g' | 'ml';
+
 export interface RecipeIngredient {
   name: string;
   amount: number;
+  amountType: AmountType;
 }
 
 export interface RecipeListItem {
