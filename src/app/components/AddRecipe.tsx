@@ -9,7 +9,7 @@ import { pastryCategories } from '../consts/pastry-categories.const';
 import CustomButton from './shared/CustomButton';
 import CustomCheckBox from './shared/CustomCheckBox';
 import { Formik } from 'formik';
-import { RecipeListItemInterface } from '../interfaces/recipe.interface';
+import { RecipeListItem } from '../interfaces/recipe.interface';
 import { addRecipe } from '../services/dataApi';
 import { ScreensEnum } from '../enums/screens.enum';
 import { useNavigation } from '@react-navigation/native';
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const initialFormValues: RecipeListItemInterface = {
+const initialFormValues: RecipeListItem = {
   title: '',
   category: '',
   time: '',
@@ -78,7 +78,7 @@ const AddRecipeScreen: FunctionComponent<{}> = (): React.ReactElement => {
   }, [isAddedToFavourites, setIsAddedToFavourites]);
 
   //ToDo add error handling
-  const addNewRecipe = async (recipeItems: RecipeListItemInterface): Promise<void> => {
+  const addNewRecipe = async (recipeItems: RecipeListItem): Promise<void> => {
     try {
       await AddRecipeValidationSchema.validate(recipeItems);
       await addRecipe(recipeItems);
@@ -89,7 +89,7 @@ const AddRecipeScreen: FunctionComponent<{}> = (): React.ReactElement => {
     }
   };
 
-  const setTimeValue = useCallback(async timeValue => {
+  const setTimeValue = useCallback(async (timeValue) => {
     const calculatedTime: string = calculateTime(timeValue);
     setTime(calculatedTime);
   }, []);
@@ -132,7 +132,7 @@ const AddRecipeScreen: FunctionComponent<{}> = (): React.ReactElement => {
 
         <Formik
           initialValues={initialFormValues}
-          onSubmit={values => addNewRecipe({ ...values, isFavourite: isAddedToFavourites, category, time })}
+          onSubmit={(values) => addNewRecipe({ ...values, isFavourite: isAddedToFavourites, category, time })}
         >
           {({ handleSubmit, handleChange, values }) => (
             <View style={{ width: '100%' }}>
@@ -147,7 +147,7 @@ const AddRecipeScreen: FunctionComponent<{}> = (): React.ReactElement => {
                       value={values.authors}
                       autoFocus={false}
                     />
-                    <CustomPicker style={styles.inputsDistance} list={pastryCategories} onChange={setCategory} />
+                    <CustomPicker style={styles.inputsDistance} list={pastryCategories} onChange={setCategory} value={category} />
                     <CustomInput
                       placeholder={'Title'}
                       style={styles.inputsDistance}
@@ -171,12 +171,11 @@ const AddRecipeScreen: FunctionComponent<{}> = (): React.ReactElement => {
                 {currentPosition == 2 && (
                   <>
                     <CustomInput
-                      multiline
                       placeholder={'Description'}
                       style={styles.inputsDistance}
                       onChange={handleChange('description')}
                       value={values.description}
-                      autoFocus={false}
+                      multiline
                     />
                     <CustomCheckBox
                       text={'Add this recipe to favourites'}

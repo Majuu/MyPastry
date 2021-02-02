@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from './src/app/store/store';
 import MenuScreen from './src/app/screens/MenuScreen';
 import IntroScreen from './src/app/screens/IntroScreen';
-import RecipeListScreen from './src/app/screens/AllRecipesScreen';
+import RecipeListScreen from './src/app/screens/RecipesScreen';
 import LearnBasicsScreen from './src/app/screens/BasicsScreen';
 import { ScreensEnum } from './src/app/enums/screens.enum';
 import AddRecipeScreen from './src/app/components/AddRecipe';

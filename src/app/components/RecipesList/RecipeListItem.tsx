@@ -6,13 +6,12 @@ import { FontsEnum } from '../../enums/fonts.enum';
 import Timer from '../../../../assets/images/app-interaction-icons/clock.svg';
 import InactiveStar from '../../../../assets/images/app-interaction-icons/star-empty.svg';
 import ActiveStar from '../../../../assets/images/app-interaction-icons/star-active.svg';
-import { RecipeListItemInterface } from '../../interfaces/recipe.interface';
+import { RecipeListItem } from '../../interfaces/recipe.interface';
 import { editRecipe } from '../../services/dataApi';
-import { LinearGradient } from 'react-native-svg';
 
 interface RecipeListItemProps {
   onPress: () => void;
-  item: RecipeListItemInterface;
+  item: RecipeListItem;
   setAllRecipes: () => void;
   setFavouriteRecipes: () => void;
 }
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({
+const RecipesListItem: FunctionComponent<RecipeListItemProps> = ({
   item,
   onPress,
   setAllRecipes,
@@ -68,7 +67,7 @@ const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({
   const { title, category, time, isFavourite, id } = item;
 
   const changeIsFavourites = useCallback(async () => {
-    await editRecipe({ ...item, isFavourite: !isFavourite }, id);
+    await editRecipe({ ...item, isFavourite: !isFavourite }, id as number);
     setFavouriteRecipes();
     setAllRecipes();
   }, [item, isFavourite, id]);
@@ -102,4 +101,4 @@ const RecipeListItem: FunctionComponent<RecipeListItemProps> = ({
   );
 };
 
-export default RecipeListItem;
+export default RecipesListItem;

@@ -3,7 +3,7 @@ export interface RecipeIngredient {
   amount: number;
 }
 
-export interface RecipeListItemInterface {
+export interface RecipeListItem {
   title: string;
   category: string;
   time: string;
