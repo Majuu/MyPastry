@@ -1,17 +1,19 @@
-import React, { FunctionComponent, useCallback, useMemo } from 'react';
-import { Route, StyleSheet, View } from 'react-native';
+import React, { FunctionComponent } from 'react';
+import { StyleSheet, View } from 'react-native';
 import CustomText from '../shared/CustomText';
-import CustomButton from '../shared/CustomButton';
 import CustomPicker from '../shared/CustomPicker';
 import { textPlaceholders } from '../../consts/text-placeholders.const';
 import { ColorsEnum } from '../../enums/colors.enum';
 import { FontsEnum } from '../../enums/fonts.enum';
-import { ScreensEnum } from '../../enums/screens.enum';
 import { pastryCategories } from '../../consts/pastry-categories.const';
 import { useRoute } from '@react-navigation/native';
+import CustomInput from '../shared/CustomInput';
 
 interface RecipeListNavbarProps {
-  navigation: Route;
+  searchItem: string;
+  setSearchItem: any;
+  searchCategory: string;
+  setSearchCategory: any;
 }
 
 const styles = StyleSheet.create({
@@ -19,59 +21,51 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    flex: 1,
     backgroundColor: ColorsEnum.LIGHT_GREEN,
     borderBottomColor: ColorsEnum.GREEN,
-    borderBottomWidth: 2
+    borderBottomWidth: 2,
+    height: 135
   },
   picker: {
-    width: '50%'
+    width: '45%'
   },
   contentWrapper: {
     width: '100%',
-    display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    flex: 1,
-    padding: 8,
-    marginTop: 3
+    padding: 10,
+    marginTop: 5
   },
   header: {
-    marginTop: 15
+    marginTop: 20
   }
 });
 
-const RecipeListNavbar: FunctionComponent<RecipeListNavbarProps> = ({ navigation }: RecipeListNavbarProps) => {
+const RecipeListNavbar: FunctionComponent<RecipeListNavbarProps> = ({
+  setSearchItem,
+  setSearchCategory,
+  searchCategory,
+  searchItem
+}: RecipeListNavbarProps) => {
   const route = useRoute();
-  const { goToAllRecipes, goToMyRecipes, title, myRecipesTitle } = textPlaceholders.allRecipes;
+  const { title, myRecipesTitle } = textPlaceholders.allRecipes;
   // @ts-ignore
   const isFavouriteRecipesScreen: boolean = route.params && route.params.isMyRecipes;
 
-  const buttonText: string = useMemo(() => {
-    return isFavouriteRecipesScreen ? goToAllRecipes : goToMyRecipes;
-  }, [isFavouriteRecipesScreen]);
-
-  const navigateBetweenLists = useCallback((): void => {
-    navigation.navigate(ScreensEnum.RECIPE_LIST, { isMyRecipes: !isFavouriteRecipesScreen });
-  }, [route]);
-
   return (
     <View style={styles.container}>
-      {/*  <CustomText*/}
-      {/*    style={styles.header}*/}
-      {/*    text={isFavouriteRecipesScreen ? myRecipesTitle : title}*/}
-      {/*    fontSize={32}*/}
-      {/*    fontFamily={FontsEnum.SEN_BOLD}*/}
-      {/*    color={ColorsEnum.DARK_GREEN}*/}
-      {/*  />*/}
-      {/*  <View style={styles.contentWrapper}>*/}
-      {/*    <View style={styles.picker}>*/}
-      {/*      <CustomPicker list={pastryCategories} onChange={() => {}} />*/}
-      {/*    </View>*/}
-      {/*    /!*ToDo change behaviour between all and my recipes*!/*/}
-      {/*    <CustomButton text={buttonText} onPress={navigateBetweenLists} />*/}
-      {/*  </View>*/}
+      <CustomText
+        style={styles.header}
+        text={isFavouriteRecipesScreen ? myRecipesTitle : title}
+        fontSize={32}
+        fontFamily={FontsEnum.SEN_BOLD}
+        color={ColorsEnum.DARK_GREEN}
+      />
+      <View style={styles.contentWrapper}>
+        <CustomInput placeholder={'Search'} onChange={setSearchItem} value={searchItem} isSearchBar={true} style={styles.picker} />
+        <CustomPicker list={pastryCategories} onChange={setSearchCategory} style={styles.picker} value={searchCategory} />
+      </View>
     </View>
   );
 };

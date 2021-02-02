@@ -1,12 +1,10 @@
 import { recipeActions } from '../actions/recipe.actions';
 // ToDo remove hard-coded recipe list
-import { allRecipeList } from '../../consts/all-recipes-list.const';
-import { RecipeListItemInterface } from '../../interfaces/recipe.interface';
-import extractOpacity from 'react-native-svg/lib/typescript/lib/extract/extractOpacity';
+import { RecipeListItem } from '../../interfaces/recipe.interface';
 
 interface InitialStateInterface {
-  allRecipes: RecipeListItemInterface[];
-  favouriteRecipes: RecipeListItemInterface[];
+  allRecipes: RecipeListItem[];
+  favouriteRecipes: RecipeListItem[];
 }
 
 const initialState: InitialStateInterface = {

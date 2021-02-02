@@ -1,11 +1,11 @@
-import React, { FunctionComponent, ReactElement, useEffect, useMemo, useState } from 'react';
+import React, { FunctionComponent, ReactElement, useCallback, useEffect, useMemo, useState } from 'react';
 import { FlatList, ListRenderItemInfo, Route, StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import { modalActions } from '../store/actions/modal.actions';
 import { Dispatch } from 'redux';
-import { RecipeListItemInterface } from '../interfaces/recipe.interface';
+import { RecipeListItem } from '../interfaces/recipe.interface';
 import { ColorsEnum } from '../enums/colors.enum';
-import RecipeListItem from '../components/RecipesList/RecipeListItem';
+import RecipesListItem from '../components/RecipesList/RecipeListItem';
 import RecipeListNavbar from '../components/RecipesList/RecipeListNavbar';
 import CustomModal from '../components/shared/CustomModal';
 import { getAllRecipes, getFavouritesRecipes } from '../services/dataApi';
@@ -15,44 +15,62 @@ import { useRoute } from '@react-navigation/native';
 interface AllRecipesScreenProps {
   modal: boolean;
   dispatch: Dispatch;
-  navigation: Route;
-  //later
-  allRecipes: RecipeListItemInterface[];
-  favouriteRecipes: RecipeListItemInterface[];
+  allRecipes: RecipeListItem[];
+  favouriteRecipes: RecipeListItem[];
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  navbar: {
-    flex: 0.22,
-    backgroundColor: ColorsEnum.GREEN
-  },
   itemList: {
     backgroundColor: ColorsEnum.GREEN,
     display: 'flex',
     flexDirection: 'column',
-    flex: 30,
     paddingTop: 2
   }
 });
 
-const AllRecipesScreen: FunctionComponent<AllRecipesScreenProps> = ({
+const RecipesScreen: FunctionComponent<AllRecipesScreenProps> = ({
   dispatch,
   allRecipes,
-  favouriteRecipes,
-  navigation
+  favouriteRecipes
 }: AllRecipesScreenProps): React.ReactElement => {
   const [itemInModal, setItemInModal] = useState<any>(null);
-  const route = useRoute();
+  const [searchItem, setSearchItem] = useState<string>('');
+  const [searchCategory, setSearchCategory] = useState<string>('all');
+  const route: Route = useRoute();
   //ToDo check typing
   // @ts-ignore
   const isFavouriteRecipesScreen: boolean = route.params && route.params.isMyRecipes;
 
-  const itemsToGenerate: RecipeListItemInterface[] = useMemo(() => {
-    return isFavouriteRecipesScreen ? favouriteRecipes : allRecipes;
-  }, [isFavouriteRecipesScreen, allRecipes, favouriteRecipes]);
+  const setSearchedItem = useCallback(
+    (inputValue: string) => {
+      setSearchItem(inputValue);
+    },
+    [setSearchItem]
+  );
+
+  const setSearchedCategory = useCallback(
+    (categoryValue: string) => {
+      setSearchCategory(categoryValue);
+    },
+    [setSearchCategory]
+  );
+
+  const itemsToGenerate: RecipeListItem[] = useMemo(() => {
+    const recipes: RecipeListItem[] = isFavouriteRecipesScreen ? favouriteRecipes : allRecipes;
+    const recipesFilteredByCategory: RecipeListItem[] =
+      searchCategory !== 'all' ? recipes.filter((recipe: RecipeListItem) => recipe.category.toLowerCase() === searchCategory) : recipes;
+
+    if (searchItem.length > 0) {
+      return recipesFilteredByCategory.filter((recipeItem: RecipeListItem) =>
+        recipeItem.title.toLowerCase().includes(searchItem.toLowerCase())
+      );
+    } else {
+      return recipesFilteredByCategory;
+    }
+  }, [isFavouriteRecipesScreen, allRecipes, favouriteRecipes, searchItem, searchCategory]);
 
   const setAllRecipes = async () => {
     const result = await getAllRecipes();
@@ -75,34 +93,36 @@ const AllRecipesScreen: FunctionComponent<AllRecipesScreenProps> = ({
   };
 
   useEffect(() => {
-    console.log('Called');
     if (isFavouriteRecipesScreen) {
       setFavouriteRecipes();
     } else {
       setAllRecipes();
     }
-  }, [route]);
+  }, []);
 
   const openModal = (): any =>
     dispatch({
       type: modalActions.SHOW_RECIPE_MODAL
     });
 
-  const handleModalOpen = (item: RecipeListItemInterface) => {
+  const handleModalOpen = (item: RecipeListItem) => {
     setItemInModal(item);
     openModal();
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.navbar}>
-        <RecipeListNavbar navigation={navigation} />
-      </View>
+      <RecipeListNavbar
+        setSearchItem={setSearchedItem}
+        searchItem={searchItem}
+        searchCategory={searchCategory}
+        setSearchCategory={setSearchedCategory}
+      />
       <FlatList
         style={styles.itemList}
         data={itemsToGenerate}
-        renderItem={(recipe: ListRenderItemInfo<RecipeListItemInterface>): ReactElement => (
-          <RecipeListItem
+        renderItem={(recipe: ListRenderItemInfo<RecipeListItem>): ReactElement => (
+          <RecipesListItem
             item={recipe.item}
             key={recipe.item.title}
             onPress={(): void => handleModalOpen(recipe.item)}
@@ -110,17 +130,15 @@ const AllRecipesScreen: FunctionComponent<AllRecipesScreenProps> = ({
             setFavouriteRecipes={setFavouriteRecipes}
           />
         )}
-        keyExtractor={(item: RecipeListItemInterface): string => item.title}
+        keyExtractor={(item: RecipeListItem): string => item.title}
       />
       {itemInModal && <CustomModal item={itemInModal} />}
     </View>
   );
 };
 
-export default connect(
-  (state: any): any => ({
-    modal: state.modal.isModalVisible,
-    allRecipes: state.recipe.allRecipes,
-    favouriteRecipes: state.recipe.favouriteRecipes
-  })
-)(AllRecipesScreen);
+export default connect((state: any): any => ({
+  modal: state.modal.isModalVisible,
+  allRecipes: state.recipe.allRecipes,
+  favouriteRecipes: state.recipe.favouriteRecipes
+}))(RecipesScreen);

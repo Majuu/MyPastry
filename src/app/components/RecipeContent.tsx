@@ -3,11 +3,11 @@ import { StyleSheet, View } from 'react-native';
 import CustomText from './shared/CustomText';
 import { FontsEnum } from '../enums/fonts.enum';
 import { ColorsEnum } from '../enums/colors.enum';
-import { RecipeIngredient, RecipeListItemInterface } from '../interfaces/recipe.interface';
+import { RecipeIngredient, RecipeListItem } from '../interfaces/recipe.interface';
 import { capitalize } from 'lodash';
 
 interface RecipeContentProps {
-  item: RecipeListItemInterface;
+  item: RecipeListItem;
   labels: any[];
 }
 

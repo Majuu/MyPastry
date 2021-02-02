@@ -11,8 +11,8 @@ export const textPlaceholders = {
     addRecipe: 'Add a recipe'
   },
   allRecipes: {
-    title: 'All recipes in one place',
-    myRecipesTitle: 'My saved recipes',
+    title: 'All recipes',
+    myRecipesTitle: 'Favourites',
     goToMyRecipes: 'My own recipes',
     goToAllRecipes: 'All recipes'
   }
