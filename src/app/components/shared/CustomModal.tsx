@@ -1,13 +1,9 @@
-import React, { FunctionComponent, useState } from 'react';
-import { Animated, Modal, ScrollView, StyleSheet, View } from 'react-native';
+import React, { FunctionComponent} from 'react';
+import { Modal, StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
-import RecipeContent from '../RecipeContent';
-import { modalActions } from '../../store/actions/modal.actions';
-import StepIndicator from 'react-native-step-indicator';
-import CustomText from './CustomText';
 import CloseButton from '../../../../assets/images/close.svg';
-import { FontsEnum } from '../../enums/fonts.enum';
 import { ColorsEnum } from '../../enums/colors.enum';
+import { modalActions } from '../../store/actions/modal.actions';
 
 interface CustomModalReduxStateInterface {
   modal: {
@@ -16,7 +12,6 @@ interface CustomModalReduxStateInterface {
 }
 
 interface CustomModalProps {
-  item: any;
   modal: any;
   dispatch: any;
 }
@@ -60,57 +55,18 @@ const styles = StyleSheet.create({
 });
 
 // ToDo props interface
-const CustomModal: FunctionComponent<CustomModalProps> = ({ item, modal, dispatch }: CustomModalProps): React.ReactElement => {
-  const [currentPosition, setCurrentPosition] = useState<number>(1);
+const CustomModal: FunctionComponent<CustomModalProps> = ({ modal, dispatch, children }): React.ReactElement => {
 
   const closeModal = (): void =>
     dispatch({
       type: modalActions.HIDE_RECIPE_MODAL
     });
 
-  const labels = ['Checklist', 'Cook!', 'To sum up', 'Authors'];
   return (
     <Modal animationType={'fade'} visible={modal} transparent={true} animated={true}>
       <View style={styles.container}>
         <CloseButton width={20} height={20} style={styles.closeButton} onPress={closeModal} />
-        <View style={styles.topContainerWrapper}>
-          <StepIndicator
-            labels={labels}
-            direction={'horizontal'}
-            currentPosition={currentPosition}
-            stepCount={4}
-            customStyles={{
-              stepIndicatorSize: 40,
-              currentStepIndicatorSize: 40,
-              separatorStrokeWidth: 4,
-              currentStepStrokeWidth: 4,
-              stepStrokeCurrentColor: ColorsEnum.GREEN,
-              stepStrokeWidth: 4,
-              stepStrokeFinishedColor: ColorsEnum.GREEN,
-              stepStrokeUnFinishedColor: ColorsEnum.GRAY,
-              separatorFinishedColor: ColorsEnum.GREEN,
-              separatorUnFinishedColor: ColorsEnum.GRAY,
-              stepIndicatorFinishedColor: ColorsEnum.GREEN,
-              stepIndicatorUnFinishedColor: ColorsEnum.WHITE,
-              stepIndicatorCurrentColor: ColorsEnum.WHITE,
-              stepIndicatorLabelFontSize: 22,
-              currentStepIndicatorLabelFontSize: 22,
-              stepIndicatorLabelCurrentColor: ColorsEnum.GREEN,
-              stepIndicatorLabelFinishedColor: ColorsEnum.WHITE,
-              stepIndicatorLabelUnFinishedColor: ColorsEnum.GRAY,
-              labelColor: '#999999',
-              labelSize: 15,
-              currentStepLabelColor: ColorsEnum.DARK_GREEN,
-              labelAlign: 'flex-start'
-            }}
-          />
-        </View>
-        <ScrollView style={styles.recipeContent}>
-          <View style={styles.header}>
-            <CustomText text={item.title} fontSize={40} fontFamily={FontsEnum.SEN_EXTRABOLD} color={ColorsEnum.DARK_GREEN} />
-          </View>
-          <RecipeContent item={item} labels={labels} />
-        </ScrollView>
+        {children}
       </View>
     </Modal>
   );

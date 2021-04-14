@@ -11,6 +11,7 @@ import CustomModal from '../components/shared/CustomModal';
 import { getAllRecipes, getFavouritesRecipes } from '../services/dataApi';
 import { recipeActions } from '../store/actions/recipe.actions';
 import { useRoute } from '@react-navigation/native';
+import RecipeContentContainer from '../components/RecipeContentContainer';
 
 interface AllRecipesScreenProps {
   modal: boolean;
@@ -132,7 +133,9 @@ const RecipesScreen: FunctionComponent<AllRecipesScreenProps> = ({
         )}
         keyExtractor={(item: RecipeListItem): string => item.title}
       />
-      {itemInModal && <CustomModal item={itemInModal} />}
+      {itemInModal && <CustomModal >
+        <RecipeContentContainer item={itemInModal} />
+        </CustomModal>}
     </View>
   );
 };

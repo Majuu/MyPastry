@@ -37,7 +37,7 @@ const AddIngredient: FunctionComponent<AddIngredientProps> = ({ ingredients, set
       </ScrollView>
       <View style={styles.buttonWrapper}>
         {/*ToDo open modal with quick ingredient adding mechanism*/}
-        <CustomButton text={'Add ingredient'} onPress={() => {}} />
+        <CustomButton text={'Add ingredient'} onPress={() => {console.log('works')}} />
       </View>
     </View>
   );
