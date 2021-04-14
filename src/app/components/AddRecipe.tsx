@@ -9,7 +9,7 @@ import { pastryCategories } from '../consts/pastry-categories.const';
 import CustomButton from './shared/CustomButton';
 import CustomCheckBox from './shared/CustomCheckBox';
 import { Formik } from 'formik';
-import { RecipeListItem } from '../interfaces/recipe.interface';
+import { RecipeIngredient, RecipeListItem } from '../interfaces/recipe.interface';
 import { addRecipe } from '../services/dataApi';
 import { ScreensEnum } from '../enums/screens.enum';
 import { useNavigation } from '@react-navigation/native';
@@ -17,6 +17,7 @@ import { calculateTime } from '../helpers/calculateTime';
 import { AddRecipeValidationSchema } from '../helpers/validator';
 import SlidingTimePicker from './SlidingTimePicker';
 import CustomStepIndicator from './shared/CustomStepIndicator';
+import AddIngredient from './AddIngredient';
 
 const styles = StyleSheet.create({
   container: {
@@ -68,6 +69,7 @@ const AddRecipeScreen: FunctionComponent<{}> = (): React.ReactElement => {
   const [isAddedToFavourites, setIsAddedToFavourites] = useState<boolean>(false);
   const [time, setTime] = useState<string>('00:00:00');
   const [category, setCategory] = useState<string>('');
+  const [ingredients, setIngredients] = useState<RecipeIngredient[]>([]);
   const navigation: Route = useNavigation();
 
   const labels: string[] = ['Basic information', 'Ingredients', 'Description'];
@@ -159,14 +161,15 @@ const AddRecipeScreen: FunctionComponent<{}> = (): React.ReactElement => {
                   </>
                 )}
                 {currentPosition == 1 && (
-                  <>
-                    <CustomText
-                      text={'Ingredients coming soon...'}
-                      fontSize={30}
-                      fontFamily={FontsEnum.SEN_BOLD}
-                      color={ColorsEnum.DARK_GREEN}
-                    />
-                  </>
+                  <View>
+                    <AddIngredient ingredients={ingredients} setIngredients={setIngredients} />
+                    {/*<CustomText*/}
+                    {/*  text={'Ingredients coming soon...'}*/}
+                    {/*  fontSize={30}*/}
+                    {/*  fontFamily={FontsEnum.SEN_BOLD}*/}
+                    {/*  color={ColorsEnum.DARK_GREEN}*/}
+                    {/*/>*/}
+                  </View>
                 )}
                 {currentPosition == 2 && (
                   <>

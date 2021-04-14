@@ -9,15 +9,18 @@
       "ingredients": [
         {
           "name": "flour",
-          "amount": 500
+          "amount": 500,
+          "amountType": "g"
         },
         {
           "name": "eggs",
-          "amount": 3
+          "amount": 3,
+          "amountType": "none"
         },
         {
           "name": "milk",
-          "amount": 300
+          "amount": 300,
+          "amountType": "ml"
         }
       ],
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -32,15 +35,18 @@
       "ingredients": [
         {
           "name": "flour",
-          "amount": 500
+          "amount": 500,
+          "amountType": "g"
         },
         {
           "name": "eggs",
-          "amount": 3
+          "amount": 3,
+          "amountType": "none"
         },
         {
           "name": "milk",
-          "amount": 300
+          "amount": 300,
+          "amountType": "ml"
         }
       ],
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -55,15 +61,18 @@
       "ingredients": [
         {
           "name": "flour",
-          "amount": 500
+          "amount": 500,
+          "amountType": "g"
         },
         {
           "name": "eggs",
-          "amount": 3
+          "amount": 3,
+          "amountType": "none"
         },
         {
           "name": "milk",
-          "amount": 300
+          "amount": 300,
+          "amountType": "ml"
         }
       ],
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -78,15 +87,18 @@
       "ingredients": [
         {
           "name": "flour",
-          "amount": 500
+          "amount": 500,
+          "amountType": "g"
         },
         {
           "name": "eggs",
-          "amount": 3
+          "amount": 3,
+          "amountType": "none"
         },
         {
           "name": "milk",
-          "amount": 300
+          "amount": 300,
+          "amountType": "ml"
         }
       ],
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -101,15 +113,18 @@
       "ingredients": [
         {
           "name": "flour",
-          "amount": 500
+          "amount": 500,
+          "amountType": "g"
         },
         {
           "name": "eggs",
-          "amount": 3
+          "amount": 3,
+          "amountType": "none"
         },
         {
           "name": "milk",
-          "amount": 300
+          "amount": 300,
+          "amountType": "ml"
         }
       ],
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -124,15 +139,18 @@
       "ingredients": [
         {
           "name": "flour",
-          "amount": 500
+          "amount": 500,
+          "amountType": "g"
         },
         {
           "name": "eggs",
-          "amount": 3
+          "amount": 3,
+          "amountType": "none"
         },
         {
           "name": "milk",
-          "amount": 300
+          "amount": 300,
+          "amountType": "ml"
         }
       ],
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
